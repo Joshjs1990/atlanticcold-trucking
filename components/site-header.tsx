@@ -35,7 +35,7 @@ export function BrandMark({
 
   return (
     <Link
-      href="/#top"
+      href="/"
       className="brand-mark"
       aria-label="AtlanticCold Trucking home"
     >
