@@ -19,16 +19,14 @@ const services = [
   {
     title: 'Refrigerated Transportation',
     text: 'Temperature-controlled freight that arrives in spec, across every mile.',
-    image:
-      'https://images.unsplash.com/photo-1765571394962-c8d03a8d0ef5?auto=format&fit=crop&w=1200&q=82',
-    alt: 'Freight truck travelling on a highway',
+    image: '/stock/home-refrigerated-snow-highway.webp',
+    alt: 'Freight truck travelling on a snow-covered highway',
   },
   {
     title: 'Dedicated Solutions',
     text: 'A consistent team, route, and plan built around your operation.',
-    image:
-      'https://images.unsplash.com/photo-1671656202170-d382ace43d3c?auto=format&fit=crop&w=1200&q=82',
-    alt: 'Temperature-controlled freight at a loading dock',
+    image: '/stock/home-refrigerated-fleet.webp',
+    alt: 'Fleet of refrigerated trucks ready for dispatch',
   },
   {
     title: 'Supply Chain Support',

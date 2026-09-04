@@ -12,12 +12,12 @@ const areas = {
     title: 'Refrigerated and frozen food freight across New York.',
     copy: 'AtlanticCold provides temperature-controlled trucking for food shippers moving through New York, from the Hudson Valley and Capital Region to the New York City metro.',
     corridors: 'Hudson Valley / Capital Region / New York City metro',
-    heroImage:
-      'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=2200&q=88',
-    overviewImage:
-      'https://images.unsplash.com/photo-1671656202170-d382ace43d3c?auto=format&fit=crop&w=1600&q=84',
-    ctaImage:
-      'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=2200&q=86',
+    heroImage: '/stock/ny-winter-truck.webp',
+    heroAlt: 'Freight truck travelling through heavy winter weather',
+    overviewImage: '/stock/ny-loading-dock.webp',
+    overviewAlt: 'Truck moving through an industrial loading dock',
+    ctaImage: '/stock/ny-highway-fleet.webp',
+    ctaAlt: 'Freight trucks travelling together on a highway',
   },
   'new-jersey': {
     name: 'New Jersey',
@@ -25,12 +25,12 @@ const areas = {
     title: 'Cold-chain transportation across New Jersey.',
     copy: 'We move refrigerated and frozen food through New Jersey with dependable reefer capacity for distribution centers, wholesalers, and grocery supply chains.',
     corridors: 'Northern New Jersey / Newark / Trenton / Camden',
-    heroImage:
-      'https://images.unsplash.com/photo-1765571394962-c8d03a8d0ef5?auto=format&fit=crop&w=2200&q=88',
-    overviewImage:
-      'https://images.unsplash.com/photo-1764046155497-ad7e50737ffa?auto=format&fit=crop&w=1600&q=84',
-    ctaImage:
-      'https://images.unsplash.com/photo-1664382953403-fc1ac77073a0?auto=format&fit=crop&w=2200&q=86',
+    heroImage: '/stock/nj-snow-road.webp',
+    heroAlt: 'Truck travelling along a snow-covered mountain road',
+    overviewImage: '/stock/nj-loading-dock.webp',
+    overviewAlt: 'Semi-truck backed into an industrial loading dock',
+    ctaImage: '/stock/nj-scenic-semi.webp',
+    ctaAlt: 'White semi-truck travelling through a mountain corridor',
   },
   pennsylvania: {
     name: 'Pennsylvania',
@@ -38,12 +38,12 @@ const areas = {
     title: 'Refrigerated food freight throughout Pennsylvania.',
     copy: 'AtlanticCold serves Pennsylvania distribution routes with practical coordination, modern reefer equipment, and direct communication from pickup through delivery.',
     corridors: 'Philadelphia / Lehigh Valley / Scranton / Harrisburg',
-    heroImage:
-      'https://images.unsplash.com/photo-1664382953403-fc1ac77073a0?auto=format&fit=crop&w=2200&q=88',
-    overviewImage:
-      'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1600&q=84',
-    ctaImage:
-      'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=2200&q=86',
+    heroImage: '/stock/pa-white-semi.webp',
+    heroAlt: 'White semi-truck travelling under a dramatic sky',
+    overviewImage: '/stock/pa-freight-highway.webp',
+    overviewAlt: 'Freight truck travelling on a busy highway',
+    ctaImage: '/stock/pa-scenic-truck.webp',
+    ctaAlt: 'Semi-truck travelling through an open mountain route',
   },
   connecticut: {
     name: 'Connecticut',
@@ -51,12 +51,12 @@ const areas = {
     title: 'Temperature-controlled trucking across Connecticut.',
     copy: 'From Hartford to the coast, AtlanticCold handles refrigerated and frozen food shipments with the consistency needed for tight delivery windows.',
     corridors: 'Hartford / New Haven / Bridgeport / Stamford',
-    heroImage:
-      'https://images.unsplash.com/photo-1764046155497-ad7e50737ffa?auto=format&fit=crop&w=2200&q=88',
-    overviewImage:
-      'https://images.unsplash.com/photo-1765571394962-c8d03a8d0ef5?auto=format&fit=crop&w=1600&q=84',
-    ctaImage:
-      'https://images.unsplash.com/photo-1671656202170-d382ace43d3c?auto=format&fit=crop&w=2200&q=86',
+    heroImage: '/stock/ct-snow-city-truck.webp',
+    heroAlt: 'Commercial trucks operating on a snow-covered city street',
+    overviewImage: '/stock/ct-supply-chain-truck.webp',
+    overviewAlt: 'Supply-chain semi-truck travelling on the highway',
+    ctaImage: '/stock/ct-blue-semi.webp',
+    ctaAlt: 'Blue semi-truck travelling through a mountain highway',
   },
 } as const;
 
@@ -103,7 +103,7 @@ export default async function ServiceAreaPage({
         <Image
           className="location-hero-background"
           src={area.heroImage}
-          alt={`Refrigerated truck serving ${area.name}`}
+          alt={area.heroAlt}
           fill
           priority
           unoptimized
@@ -192,7 +192,7 @@ export default async function ServiceAreaPage({
         <div className="location-overview-image">
           <Image
             src={area.overviewImage}
-            alt={`Temperature-controlled freight serving ${area.name}`}
+            alt={area.overviewAlt}
             fill
             unoptimized
             sizes="(max-width: 820px) 100vw, 48vw"
@@ -313,7 +313,7 @@ export default async function ServiceAreaPage({
       <section className="location-bottom-cta">
         <Image
           src={area.ctaImage}
-          alt={`Refrigerated trucking service across ${area.name}`}
+          alt={area.ctaAlt}
           fill
           unoptimized
           sizes="100vw"
