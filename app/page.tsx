@@ -362,7 +362,14 @@ function Hero() {
       <div className="hero-panel">
         <div className="hero-copy">
           <div className="eyebrow">
-            <i /> Refrigerated &amp; frozen food freight
+            <Image
+              className="hero-logo"
+              src="/ArcticColdLogowhite.webp"
+              alt="AtlanticCold Trucking"
+              width={280}
+              height={112}
+              priority
+            />
           </div>
           <h1>
             <span className="hero-line-mask">
