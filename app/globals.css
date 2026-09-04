@@ -1716,7 +1716,7 @@ h2 > span {
 
 .location-network-section {
   padding: clamp(100px, 10vw, 150px) var(--section-x);
-  background: #eef6fa;
+  background: #fff;
 }
 
 .location-network-inner {

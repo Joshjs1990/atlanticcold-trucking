@@ -38,6 +38,10 @@ export function BrandMark({
       href="/"
       className="brand-mark"
       aria-label="AtlanticCold Trucking home"
+      onClick={(event) => {
+        event.preventDefault();
+        window.location.assign('/');
+      }}
     >
       <Image
         src={logo}
