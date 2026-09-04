@@ -235,16 +235,21 @@ export default async function ServiceAreaPage({
       <section className="location-network-section">
         <div className="location-network-inner">
           <div className="location-network-map">
-            <Image
-              src={`/location-maps/${state}.svg`}
-              alt={`AtlanticCold refrigerated trucking corridors across ${area.name}`}
-              fill
-              unoptimized
-              sizes="(max-width: 820px) 100vw, 44vw"
-            />
-            <span className="location-network-pin">
-              <MapPin size={18} /> {area.code}
-            </span>
+            <object
+              data={`/location-maps/${state}.svg`}
+              type="image/svg+xml"
+              aria-label={`Interactive AtlanticCold trucking coverage map for ${area.name}`}
+              width="900"
+              height="640"
+            >
+              <Link href={`/service-areas/${state}`}>
+                View {area.name} refrigerated trucking coverage
+              </Link>
+            </object>
+            <p className="location-map-instruction">
+              Hover a state to preview its corridors. Click to view the service
+              area.
+            </p>
           </div>
           <div className="location-network-copy">
             <span className="section-label">Coverage focus</span>
