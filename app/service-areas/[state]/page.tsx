@@ -236,8 +236,8 @@ export default async function ServiceAreaPage({
         <div className="location-network-inner">
           <div className="location-network-map">
             <Image
-              src="/actmap.webp"
-              alt="Northeast service area map"
+              src={`/location-maps/${state}.svg`}
+              alt={`AtlanticCold refrigerated trucking corridors across ${area.name}`}
               fill
               unoptimized
               sizes="(max-width: 820px) 100vw, 44vw"

@@ -1683,8 +1683,8 @@ h2 > span {
 
 .location-page .location-network-map img {
   object-fit: contain;
-  padding: 26px;
-  filter: hue-rotate(205deg) saturate(0.92) brightness(1.04);
+  padding: 0;
+  filter: none;
 }
 
 .location-page .location-network-copy > p {
