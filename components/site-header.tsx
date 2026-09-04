@@ -152,7 +152,11 @@ export function SiteHeader() {
               {coverageLinks.map(([name, code, slug]) => (
                 <Link
                   href={`/service-areas/${slug}`}
-                  onClick={closeMobileMenu}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    closeMenu();
+                    window.location.assign(`/service-areas/${slug}`);
+                  }}
                   key={slug}
                 >
                   <strong>{name}</strong>

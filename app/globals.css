@@ -2903,21 +2903,6 @@ blockquote {
       );
   }
 
-  .frost-overlay::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1;
-    height: 150px;
-    background: url('/frost-overlay-icy-window.webp') center / 100% 100%
-      no-repeat;
-    filter: saturate(0.92) brightness(1.02);
-    transform: rotate(180deg);
-    transform-origin: center;
-  }
-
   .hero-panel {
     min-height: 840px;
     padding-top: 108px;
