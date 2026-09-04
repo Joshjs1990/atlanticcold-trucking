@@ -15,7 +15,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const heroVideo =
   'https://www.youtube.com/embed/3_wATua3mLI?autoplay=1&mute=1&controls=0&loop=1&playlist=3_wATua3mLI&playsinline=1&rel=0&modestbranding=1';
-const metricsImage = '/metrics-winter-truck.png';
+const metricsImage = '/metrics-winter-truck.webp';
 const equipmentImage =
   'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1800&q=88';
 const ctaImage =
@@ -353,8 +353,8 @@ function usePremiumMotion(pageRef: React.RefObject<HTMLElement | null>) {
 function BrandMark({ variant = 'light' }: { variant?: 'light' | 'dark' }) {
   const logo =
     variant === 'light'
-      ? '/ArcticColdLogowhite.png'
-      : '/3ff43494-c173-41f4-a936-ac4dab49aba7.png';
+      ? '/ArcticColdLogowhite.webp'
+      : '/3ff43494-c173-41f4-a936-ac4dab49aba7.webp';
   const dimensions =
     variant === 'light'
       ? { width: 140, height: 56 }
@@ -608,7 +608,7 @@ function CoverageSection() {
         <svg className="coverage-map" viewBox="0 0 620 620" aria-hidden="true">
           <image
             className="coverage-map-image"
-            href="/actmap.jpg"
+            href="/actmap.webp"
             x="50"
             y="0"
             width="520"

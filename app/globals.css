@@ -552,7 +552,7 @@ h2 > span {
 .hero-video-poster {
   position: absolute;
   inset: 0;
-  background: url('/metrics-winter-truck.png') center / cover no-repeat;
+  background: url('/metrics-winter-truck.webp') center / cover no-repeat;
   filter: saturate(0.64) contrast(1.08);
 }
 
@@ -736,7 +736,7 @@ h2 > span {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/frost-overlay-icy-window.png') center / 100% 100% no-repeat;
+  background: url('/frost-overlay-icy-window.webp') center / 100% 100% no-repeat;
   filter: saturate(0.92) brightness(1.02);
 }
 
