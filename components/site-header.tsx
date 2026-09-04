@@ -81,6 +81,8 @@ export function SiteHeader() {
     setOpenMegaMenu(null);
   };
 
+  const closeMobileMenu = () => setMenuOpen(false);
+
   const toggleMegaMenu = (menu: 'services' | 'coverage') => {
     setOpenMegaMenu((current) => (current === menu ? null : menu));
   };
@@ -142,7 +144,7 @@ export function SiteHeader() {
               <p>
                 Serving New York, New Jersey, Pennsylvania, and Connecticut.
               </p>
-              <Link href="/#coverage" onClick={closeMenu}>
+              <Link href="/#coverage" onClick={closeMobileMenu}>
                 View all coverage <ArrowRight size={13} />
               </Link>
             </div>
@@ -150,7 +152,7 @@ export function SiteHeader() {
               {coverageLinks.map(([name, code, slug]) => (
                 <Link
                   href={`/service-areas/${slug}`}
-                  onClick={closeMenu}
+                  onClick={closeMobileMenu}
                   key={slug}
                 >
                   <strong>{name}</strong>
