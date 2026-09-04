@@ -800,6 +800,7 @@ h2 > span {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: url('/frost-overlay-icy-window.webp') center / 100% 100% no-repeat;
   filter: saturate(0.92) brightness(1.02);
 }
@@ -2900,6 +2901,21 @@ blockquote {
         transparent 50%,
         rgba(3, 9, 16, 0.48) 100%
       );
+  }
+
+  .frost-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: 150px;
+    background: url('/frost-overlay-icy-window.webp') center / 100% 100%
+      no-repeat;
+    filter: saturate(0.92) brightness(1.02);
+    transform: rotate(180deg);
+    transform-origin: center;
   }
 
   .hero-panel {
