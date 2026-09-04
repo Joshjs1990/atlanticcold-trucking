@@ -52,6 +52,9 @@ export function BrandMark({
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openMegaMenu, setOpenMegaMenu] = useState<
+    'services' | 'coverage' | null
+  >(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -62,15 +65,25 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    if (!menuOpen) return;
+    if (!menuOpen && !openMegaMenu) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMenuOpen(false);
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        setOpenMegaMenu(null);
+      }
     };
     document.addEventListener('keydown', onKeyDown);
     return () => document.removeEventListener('keydown', onKeyDown);
-  }, [menuOpen]);
+  }, [menuOpen, openMegaMenu]);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setOpenMegaMenu(null);
+  };
+
+  const toggleMegaMenu = (menu: 'services' | 'coverage') => {
+    setOpenMegaMenu((current) => (current === menu ? null : menu));
+  };
 
   return (
     <header className={scrolled ? 'site-header is-scrolled' : 'site-header'}>
@@ -80,11 +93,20 @@ export function SiteHeader() {
         className={menuOpen ? 'main-nav is-open' : 'main-nav'}
         aria-label="Primary navigation"
       >
-        <div className="nav-mega-group">
-          <Link href="/#services" onClick={closeMenu}>
+        <div
+          className={`nav-mega-group ${openMegaMenu === 'services' ? 'is-open' : ''}`}
+        >
+          <button
+            className="mega-trigger"
+            type="button"
+            onClick={() => toggleMegaMenu('services')}
+            aria-haspopup="true"
+            aria-expanded={openMegaMenu === 'services'}
+            aria-controls="services-mega-menu"
+          >
             Services
-          </Link>
-          <div className="mega-menu mega-menu-services">
+          </button>
+          <div id="services-mega-menu" className="mega-menu mega-menu-services">
             <div className="mega-menu-intro">
               <span>Cold-chain services</span>
               <p>
@@ -101,16 +123,28 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
-        <div className="nav-mega-group">
-          <Link href="/#coverage" onClick={closeMenu}>
+        <div
+          className={`nav-mega-group ${openMegaMenu === 'coverage' ? 'is-open' : ''}`}
+        >
+          <button
+            className="mega-trigger"
+            type="button"
+            onClick={() => toggleMegaMenu('coverage')}
+            aria-haspopup="true"
+            aria-expanded={openMegaMenu === 'coverage'}
+            aria-controls="coverage-mega-menu"
+          >
             Coverage
-          </Link>
-          <div className="mega-menu mega-menu-coverage">
+          </button>
+          <div id="coverage-mega-menu" className="mega-menu mega-menu-coverage">
             <div className="mega-menu-intro">
               <span>Northeast coverage</span>
               <p>
                 Serving New York, New Jersey, Pennsylvania, and Connecticut.
               </p>
+              <Link href="/#coverage" onClick={closeMenu}>
+                View all coverage <ArrowRight size={13} />
+              </Link>
             </div>
             <div className="mega-menu-links">
               {coverageLinks.map(([name, code, slug]) => (
