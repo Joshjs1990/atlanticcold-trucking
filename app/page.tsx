@@ -1,17 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import {
-  ArrowDownRight,
-  ArrowRight,
-  Check,
-  Menu,
-  Snowflake,
-  X,
-} from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { ArrowDownRight, ArrowRight, Check, Snowflake } from 'lucide-react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { BrandMark, SiteHeader } from '@/components/site-header';
 
 const heroVideo =
   'https://www.youtube.com/embed/3_wATua3mLI?autoplay=1&mute=1&controls=0&loop=1&playlist=3_wATua3mLI&playsinline=1&rel=0&modestbranding=1';
@@ -348,148 +342,6 @@ function usePremiumMotion(pageRef: React.RefObject<HTMLElement | null>) {
       context.revert();
     };
   }, [pageRef]);
-}
-
-function BrandMark({ variant = 'light' }: { variant?: 'light' | 'dark' }) {
-  const logo =
-    variant === 'light'
-      ? '/ArcticColdLogowhite.webp'
-      : '/3ff43494-c173-41f4-a936-ac4dab49aba7.webp';
-  const dimensions =
-    variant === 'light'
-      ? { width: 140, height: 56 }
-      : { width: 140, height: 47 };
-
-  return (
-    <a
-      href="#top"
-      className="brand-mark"
-      aria-label="AtlanticCold Trucking home"
-    >
-      <Image
-        src={logo}
-        alt="AtlanticCold Trucking"
-        width={dimensions.width}
-        height={dimensions.height}
-        priority
-      />
-    </a>
-  );
-}
-
-function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 28);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMenuOpen(false);
-    };
-    document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
-  }, [menuOpen]);
-
-  const navItems = [
-    ['Equipment', '#equipment'],
-    ['About', '#about'],
-    ['Careers', '#careers'],
-    ['Contact', '#contact'],
-  ];
-
-  return (
-    <header className={scrolled ? 'site-header is-scrolled' : 'site-header'}>
-      <BrandMark variant={scrolled ? 'dark' : 'light'} />
-      <nav
-        id="primary-navigation"
-        className={menuOpen ? 'main-nav is-open' : 'main-nav'}
-        aria-label="Primary navigation"
-      >
-        <div className="nav-mega-group">
-          <a href="#services" onClick={() => setMenuOpen(false)}>
-            Services
-          </a>
-          <div className="mega-menu mega-menu-services">
-            <div className="mega-menu-intro">
-              <span>Cold-chain services</span>
-              <p>
-                Refrigerated and frozen food transportation for the Northeast.
-              </p>
-            </div>
-            <div className="mega-menu-links">
-              {services.map((service) => (
-                <a
-                  href="#services"
-                  onClick={() => setMenuOpen(false)}
-                  key={service.title}
-                >
-                  <strong>{service.title}</strong>
-                  <small>{service.text}</small>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="nav-mega-group">
-          <a href="#coverage" onClick={() => setMenuOpen(false)}>
-            Coverage
-          </a>
-          <div className="mega-menu mega-menu-coverage">
-            <div className="mega-menu-intro">
-              <span>Northeast coverage</span>
-              <p>
-                Serving New York, New Jersey, Pennsylvania, and Connecticut.
-              </p>
-            </div>
-            <div className="mega-menu-links">
-              {coverageAreas.map((area) => (
-                <a
-                  href={`/service-areas/${area.slug}`}
-                  onClick={() => setMenuOpen(false)}
-                  key={area.slug}
-                >
-                  <strong>{area.name}</strong>
-                  <small>{area.short} service area</small>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-        {navItems.map(([label, href]) => (
-          <a key={label} href={href} onClick={() => setMenuOpen(false)}>
-            {label}
-          </a>
-        ))}
-        <a
-          className="mobile-quote"
-          href="#contact"
-          onClick={() => setMenuOpen(false)}
-        >
-          Request a quote <ArrowRight size={15} />
-        </a>
-      </nav>
-      <a className="header-quote" href="#contact">
-        <span>Request a quote</span>
-        <ArrowRight size={15} />
-      </a>
-      <button
-        className="menu-toggle"
-        onClick={() => setMenuOpen((open) => !open)}
-        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-        aria-controls="primary-navigation"
-        aria-expanded={menuOpen}
-      >
-        {menuOpen ? <X size={20} /> : <Menu size={20} />}
-      </button>
-    </header>
-  );
 }
 
 function Hero() {
@@ -885,7 +737,7 @@ export default function Home() {
 
   return (
     <main ref={pageRef} className="site-page">
-      <Header />
+      <SiteHeader />
       <Hero />
       <ServicesSection />
       <CoverageSection />
