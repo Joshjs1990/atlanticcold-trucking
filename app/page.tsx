@@ -10,8 +10,7 @@ import { BrandMark, SiteHeader } from '@/components/site-header';
 const heroVideo =
   'https://www.youtube.com/embed/3_wATua3mLI?autoplay=1&mute=1&controls=0&loop=1&playlist=3_wATua3mLI&playsinline=1&rel=0&modestbranding=1';
 const metricsImage = '/metrics-winter-truck.webp';
-const equipmentImage =
-  'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1800&q=88';
+const equipmentImage = '/stock/atlanticcold-truck.webp';
 const ctaImage =
   'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=2200&q=88';
 
