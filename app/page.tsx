@@ -1,7 +1,13 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { ArrowDownRight, ArrowRight, Check, Snowflake } from 'lucide-react';
+import {
+  ArrowDownRight,
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Snowflake,
+} from 'lucide-react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -401,6 +407,20 @@ function Hero() {
 }
 
 function ServicesSection() {
+  const servicesCarouselRef = useRef<HTMLDivElement>(null);
+
+  const moveServices = (direction: number) => {
+    const carousel = servicesCarouselRef.current;
+    if (!carousel) return;
+
+    const firstCard = carousel.querySelector<HTMLElement>('.service-card');
+    const distance = firstCard
+      ? firstCard.offsetWidth + 18
+      : carousel.clientWidth * 0.8;
+
+    carousel.scrollBy({ left: direction * distance, behavior: 'smooth' });
+  };
+
   return (
     <section className="services-section section-light" id="services">
       <div className="services-heading">
@@ -423,7 +443,26 @@ function ServicesSection() {
           </a>
         </div>
       </div>
-      <div className="services-cards">
+      <div className="services-carousel-toolbar">
+        <span>Explore services</span>
+        <div className="services-carousel-controls">
+          <button
+            type="button"
+            onClick={() => moveServices(-1)}
+            aria-label="Previous service"
+          >
+            <ArrowLeft size={17} />
+          </button>
+          <button
+            type="button"
+            onClick={() => moveServices(1)}
+            aria-label="Next service"
+          >
+            <ArrowRight size={17} />
+          </button>
+        </div>
+      </div>
+      <div className="services-cards" ref={servicesCarouselRef}>
         {services.map((service) => (
           <a className="service-card" href="#contact" key={service.title}>
             <div className="service-card-image">
