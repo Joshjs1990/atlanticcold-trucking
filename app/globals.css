@@ -3210,6 +3210,14 @@ blockquote {
     padding: 12px 0 12px 14px;
   }
 
+  /* The desktop menu is centered with a translate; clear it on mobile so
+     the submenu stays inside the navigation panel. */
+  .nav-mega-group:hover .mega-menu,
+  .nav-mega-group:focus-within .mega-menu,
+  .nav-mega-group.is-open .mega-menu {
+    transform: none;
+  }
+
   .mega-menu::before {
     display: none;
   }
