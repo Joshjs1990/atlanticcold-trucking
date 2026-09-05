@@ -25,6 +25,10 @@ const servicePages = {
       'AtlanticCold moves refrigerated and frozen food for manufacturers, distributors, wholesalers, and retailers across New York, New Jersey, Pennsylvania, and Connecticut.',
     image: '/stock/home-refrigerated-snow-highway.webp',
     alt: 'Refrigerated truck travelling on a snow-covered Northeast highway',
+    whyImage: '/stock/pa-freight-highway.webp',
+    whyAlt: 'Refrigerated freight truck moving through Pennsylvania',
+    ctaImage: '/stock/ny-highway-fleet.webp',
+    ctaAlt: 'Freight trucks travelling together on a New York highway',
     facts: [
       'Chilled and frozen food loads',
       'Scheduled and recurring routes',
@@ -63,6 +67,10 @@ const servicePages = {
       'Dedicated transportation gives recurring Northeast freight a dependable operating rhythm, with familiar drivers, equipment, and communication around your schedule.',
     image: '/stock/home-refrigerated-fleet.webp',
     alt: 'Fleet of refrigerated trucks ready for dispatch',
+    whyImage: '/stock/ct-blue-semi.webp',
+    whyAlt: 'Blue semi-truck travelling through Connecticut',
+    ctaImage: '/stock/pa-scenic-truck.webp',
+    ctaAlt: 'Semi-truck travelling through a Pennsylvania route',
     facts: [
       'Recurring route coverage',
       'Dedicated operating contact',
@@ -101,6 +109,10 @@ const servicePages = {
       'When a shipment involves multiple stops, tight windows, or changing instructions, AtlanticCold helps keep the cold chain organized and moving.',
     image: '/stock/ny-loading-dock.webp',
     alt: 'Refrigerated freight truck at a loading dock',
+    whyImage: '/stock/ny-winter-truck.webp',
+    whyAlt: 'Refrigerated truck travelling through a New York winter route',
+    ctaImage: '/stock/ct-supply-chain-truck.webp',
+    ctaAlt: 'Supply-chain truck travelling through Connecticut',
     facts: [
       'Multi-stop shipment coordination',
       'Distribution and consolidation support',
@@ -140,6 +152,10 @@ const servicePages = {
       'Food freight needs more than a truck. AtlanticCold builds practical checks, clear communication, and accountable handling into every movement.',
     image: '/stock/ct-supply-chain-truck.webp',
     alt: 'Commercial refrigerated truck travelling on a highway',
+    whyImage: '/stock/nj-scenic-semi.webp',
+    whyAlt: 'Semi-truck travelling through a New Jersey corridor',
+    ctaImage: '/stock/pa-white-semi.webp',
+    ctaAlt: 'White refrigerated semi-truck travelling through Pennsylvania',
     facts: [
       'Temperature-conscious handling',
       'Documented shipment communication',
@@ -178,6 +194,10 @@ const servicePages = {
       'AtlanticCold offers cross-dock services for refrigerated and frozen food that needs to transfer, consolidate, or keep moving without unnecessary storage time.',
     image: '/stock/nj-loading-dock.webp',
     alt: 'Refrigerated truck positioned at a cross-dock loading facility',
+    whyImage: '/stock/nj-snow-road.webp',
+    whyAlt: 'Refrigerated truck moving through a snowy New Jersey road',
+    ctaImage: '/stock/atlanticcold-truck.webp',
+    ctaAlt: 'AtlanticCold refrigerated truck ready for a regional delivery',
     facts: [
       'Northeast transfer and consolidation support',
       'Refrigerated and frozen freight',
@@ -357,6 +377,15 @@ export default async function ServicePage({
       </section>
 
       <section className="service-why">
+        <Image
+          className="service-why-background"
+          src={servicePage.whyImage}
+          alt={servicePage.whyAlt}
+          fill
+          unoptimized
+          sizes="100vw"
+        />
+        <div className="service-why-overlay" aria-hidden="true" />
         <div className="service-why-heading">
           <div>
             <span className="section-label section-label-light">
@@ -433,6 +462,15 @@ export default async function ServicePage({
       </section>
 
       <section className="service-final-cta">
+        <Image
+          className="service-final-cta-background"
+          src={servicePage.ctaImage}
+          alt={servicePage.ctaAlt}
+          fill
+          unoptimized
+          sizes="(max-width: 820px) 100vw, 1180px"
+        />
+        <div className="service-final-cta-overlay" aria-hidden="true" />
         <div>
           <span className="section-label section-label-light">
             Ready to plan the move?

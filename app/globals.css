@@ -1704,13 +1704,42 @@ h2 > span {
 }
 
 .service-why {
+  position: relative;
+  overflow: hidden;
   padding: clamp(100px, 11vw, 156px) var(--section-x);
   background: var(--navy-900);
   color: #fff;
+  isolation: isolate;
+}
+
+.service-why-background,
+.service-final-cta-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  object-fit: cover;
+  filter: saturate(0.68) contrast(1.08);
+}
+
+.service-why-overlay,
+.service-final-cta-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.service-why-overlay {
+  background: rgba(3, 9, 16, 0.76);
+}
+
+.service-final-cta-overlay {
+  background: rgba(3, 9, 16, 0.72);
 }
 
 .service-why-heading,
 .service-why-grid {
+  position: relative;
+  z-index: 2;
   width: min(100%, 1180px);
   margin-inline: auto;
 }
@@ -1841,6 +1870,8 @@ h2 > span {
 }
 
 .service-final-cta {
+  position: relative;
+  overflow: hidden;
   width: min(calc(100% - (2 * var(--section-x))), 1180px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.6fr);
@@ -1851,6 +1882,12 @@ h2 > span {
   border-radius: 18px;
   background: var(--navy-900);
   color: #fff;
+  isolation: isolate;
+}
+
+.service-final-cta > div:not(.service-final-cta-overlay) {
+  position: relative;
+  z-index: 2;
 }
 
 .service-final-cta h2 {
