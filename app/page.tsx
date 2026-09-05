@@ -41,6 +41,12 @@ const services = [
       'https://images.unsplash.com/photo-1664382953403-fc1ac77073a0?auto=format&fit=crop&w=1200&q=82',
     alt: 'Logistics team reviewing freight operations',
   },
+  {
+    title: 'Cross Dock Services',
+    text: 'Fast transfer, consolidation, and short-term handling just 7 miles from New York City.',
+    image: '/stock/nj-loading-dock.webp',
+    alt: 'Refrigerated truck at a cross-dock loading facility',
+  },
 ];
 
 const coverageAreas = [
@@ -409,7 +415,8 @@ function ServicesSection() {
         <div className="services-heading-copy">
           <p>
             We transport refrigerated and frozen food with the equipment,
-            communication, and regional coverage your shipments require.
+            communication, and regional coverage your shipments require. Our
+            cross-dock facility is just 7 miles from New York City.
           </p>
           <a className="text-cta dark-cta" href="#contact">
             Talk to our team <ArrowRight size={17} />

@@ -857,15 +857,20 @@ h2 > span {
 }
 
 .services-cards {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
   gap: 18px;
   margin-top: 90px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
 }
 
 .service-card {
   position: relative;
   display: flex;
+  flex: 0 0 calc((100% - 54px) / 4);
   min-width: 0;
   flex-direction: column;
   overflow: hidden;
@@ -878,6 +883,7 @@ h2 > span {
   transition:
     border-color 0.3s ease,
     box-shadow 0.42s var(--ease-premium);
+  scroll-snap-align: start;
 }
 
 .service-card:hover {
@@ -2592,7 +2598,11 @@ blockquote {
   }
 
   .services-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+  }
+
+  .service-card {
+    flex-basis: calc((100% - 18px) / 2);
   }
 
   .service-card-image {
@@ -2970,9 +2980,13 @@ blockquote {
   }
 
   .services-cards {
-    grid-template-columns: 1fr;
+    display: flex;
     gap: 18px;
     margin-top: 60px;
+  }
+
+  .service-card {
+    flex-basis: min(86vw, 360px);
   }
 
   .service-card-image {
