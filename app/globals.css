@@ -291,6 +291,8 @@ h2 > span {
 }
 
 .main-nav {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: clamp(21px, 2.2vw, 39px);
@@ -367,6 +369,7 @@ h2 > span {
 
 .nav-mega-group {
   position: relative;
+  z-index: 1;
 }
 
 .nav-mega-group > a {

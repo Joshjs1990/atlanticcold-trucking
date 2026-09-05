@@ -144,7 +144,11 @@ export function SiteHeader() {
               {serviceLinks.map(([title, copy, slug]) => (
                 <Link
                   href={`/services/${slug}`}
-                  onClick={closeMenu}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    closeMenu();
+                    window.location.assign(`/services/${slug}`);
+                  }}
                   key={title}
                 >
                   <strong>{title}</strong>
