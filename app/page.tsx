@@ -445,45 +445,47 @@ function ServicesSection() {
       </div>
       <div className="services-carousel-toolbar">
         <span>Explore services</span>
-        <div className="services-carousel-controls">
-          <button
-            type="button"
-            onClick={() => moveServices(-1)}
-            aria-label="Previous service"
-          >
-            <ArrowLeft size={17} />
-          </button>
-          <button
-            type="button"
-            onClick={() => moveServices(1)}
-            aria-label="Next service"
-          >
-            <ArrowRight size={17} />
-          </button>
-        </div>
       </div>
-      <div className="services-cards" ref={servicesCarouselRef}>
-        {services.map((service) => (
-          <a className="service-card" href="#contact" key={service.title}>
-            <div className="service-card-image">
-              <Image
-                src={service.image}
-                alt={service.alt}
-                fill
-                unoptimized
-                sizes="(max-width: 680px) 100vw, (max-width: 900px) 50vw, 25vw"
-              />
-              <span className="service-card-sheen" aria-hidden="true" />
-            </div>
-            <div className="service-card-body">
-              <h3>{service.title}</h3>
-              <p>{service.text}</p>
-              <span className="service-card-link">
-                Explore service <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-        ))}
+      <div className="services-carousel">
+        <button
+          className="services-carousel-arrow"
+          type="button"
+          onClick={() => moveServices(-1)}
+          aria-label="Previous service"
+        >
+          <ArrowLeft size={17} />
+        </button>
+        <div className="services-cards" ref={servicesCarouselRef}>
+          {services.map((service) => (
+            <a className="service-card" href="#contact" key={service.title}>
+              <div className="service-card-image">
+                <Image
+                  src={service.image}
+                  alt={service.alt}
+                  fill
+                  unoptimized
+                  sizes="(max-width: 680px) 100vw, (max-width: 900px) 50vw, 25vw"
+                />
+                <span className="service-card-sheen" aria-hidden="true" />
+              </div>
+              <div className="service-card-body">
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+                <span className="service-card-link">
+                  Explore service <ArrowRight size={16} />
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+        <button
+          className="services-carousel-arrow"
+          type="button"
+          onClick={() => moveServices(1)}
+          aria-label="Next service"
+        >
+          <ArrowRight size={17} />
+        </button>
       </div>
     </section>
   );
