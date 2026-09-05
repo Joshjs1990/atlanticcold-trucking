@@ -23,18 +23,21 @@ const ctaImage =
 const services = [
   {
     title: 'Refrigerated Transportation',
+    slug: 'refrigerated-transportation',
     text: 'Temperature-controlled freight that arrives in spec, across every mile.',
     image: '/stock/home-refrigerated-snow-highway.webp',
     alt: 'Freight truck travelling on a snow-covered highway',
   },
   {
     title: 'Dedicated Solutions',
+    slug: 'dedicated-solutions',
     text: 'A consistent team, route, and plan built around your operation.',
     image: '/stock/home-refrigerated-fleet.webp',
     alt: 'Fleet of refrigerated trucks ready for dispatch',
   },
   {
     title: 'Supply Chain Support',
+    slug: 'supply-chain-support',
     text: 'Practical coordination that keeps the cold chain moving end to end.',
     image:
       'https://images.unsplash.com/photo-1764046155497-ad7e50737ffa?auto=format&fit=crop&w=1200&q=82',
@@ -42,6 +45,7 @@ const services = [
   },
   {
     title: 'Safety & Compliance',
+    slug: 'safety-compliance',
     text: 'Disciplined processes and real visibility from pickup to delivery.',
     image:
       'https://images.unsplash.com/photo-1664382953403-fc1ac77073a0?auto=format&fit=crop&w=1200&q=82',
@@ -49,6 +53,7 @@ const services = [
   },
   {
     title: 'Cross Dock Services',
+    slug: 'cross-dock-services',
     text: 'Fast transfer, consolidation, and short-term handling just 7 miles from New York City.',
     image: '/stock/nj-loading-dock.webp',
     alt: 'Refrigerated truck at a cross-dock loading facility',
@@ -443,9 +448,6 @@ function ServicesSection() {
           </a>
         </div>
       </div>
-      <div className="services-carousel-toolbar">
-        <span>Explore services</span>
-      </div>
       <div className="services-carousel">
         <button
           className="services-carousel-arrow"
@@ -457,7 +459,11 @@ function ServicesSection() {
         </button>
         <div className="services-cards" ref={servicesCarouselRef}>
           {services.map((service) => (
-            <a className="service-card" href="#contact" key={service.title}>
+            <a
+              className="service-card"
+              href={`/services/${service.slug}`}
+              key={service.title}
+            >
               <div className="service-card-image">
                 <Image
                   src={service.image}
@@ -676,7 +682,7 @@ function EquipmentSection() {
 
 function TestimonialSection() {
   return (
-    <section className="testimonial-section section-light" id="careers">
+    <section className="testimonial-section section-light" id="testimonials">
       <div className="testimonial-content">
         <div className="quote-mark" aria-hidden="true">
           “
@@ -767,7 +773,6 @@ function CTAFooter() {
               <a href="#services">Services</a>
               <a href="#equipment">Equipment</a>
               <a href="#about">About</a>
-              <a href="#careers">Careers</a>
               <a href="#contact">Contact</a>
             </div>
             <div className="footer-meta">

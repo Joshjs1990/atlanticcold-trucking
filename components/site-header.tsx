@@ -6,10 +6,31 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const serviceLinks = [
-  ['Refrigerated Transportation', 'Temperature-controlled food freight.'],
-  ['Dedicated Solutions', 'Consistent routes, teams, and capacity.'],
-  ['Supply Chain Support', 'Cold-chain coordination from pickup to delivery.'],
-  ['Safety & Compliance', 'Disciplined handling and shipment visibility.'],
+  [
+    'Refrigerated Transportation',
+    'Temperature-controlled food freight.',
+    'refrigerated-transportation',
+  ],
+  [
+    'Dedicated Solutions',
+    'Consistent routes, teams, and capacity.',
+    'dedicated-solutions',
+  ],
+  [
+    'Supply Chain Support',
+    'Cold-chain coordination from pickup to delivery.',
+    'supply-chain-support',
+  ],
+  [
+    'Safety & Compliance',
+    'Disciplined handling and shipment visibility.',
+    'safety-compliance',
+  ],
+  [
+    'Cross Dock Services',
+    'Transfer and consolidation 7 miles from NYC.',
+    'cross-dock-services',
+  ],
 ];
 
 const coverageLinks = [
@@ -120,8 +141,12 @@ export function SiteHeader() {
               </p>
             </div>
             <div className="mega-menu-links">
-              {serviceLinks.map(([title, copy]) => (
-                <Link href="/#services" onClick={closeMenu} key={title}>
+              {serviceLinks.map(([title, copy, slug]) => (
+                <Link
+                  href={`/services/${slug}`}
+                  onClick={closeMenu}
+                  key={title}
+                >
                   <strong>{title}</strong>
                   <small>{copy}</small>
                 </Link>
@@ -175,9 +200,6 @@ export function SiteHeader() {
         </Link>
         <Link href="/#about" onClick={closeMenu}>
           About
-        </Link>
-        <Link href="/#careers" onClick={closeMenu}>
-          Careers
         </Link>
         <Link href="/#contact" onClick={closeMenu}>
           Contact

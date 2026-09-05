@@ -262,9 +262,6 @@ export default async function ServiceAreaPage({
               Primary corridors include {area.corridors}. Contact our team to
               confirm a lane, delivery window, or recurring freight plan.
             </p>
-            <Link href="/#coverage" className="text-cta dark-cta">
-              View all coverage <ArrowRight size={17} />
-            </Link>
           </div>
         </div>
       </section>
