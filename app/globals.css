@@ -1703,6 +1703,79 @@ h2 > span {
   color: var(--blue);
 }
 
+.service-why {
+  padding: clamp(100px, 11vw, 156px) var(--section-x);
+  background: var(--navy-900);
+  color: #fff;
+}
+
+.service-why-heading,
+.service-why-grid {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+}
+
+.service-why-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.55fr);
+  align-items: end;
+  gap: 60px;
+}
+
+.service-why-heading h2 {
+  margin-top: 22px;
+  color: #fff;
+  font-size: clamp(48px, 4.8vw, 82px);
+  line-height: 0.9;
+}
+
+.service-why-heading > p {
+  max-width: 380px;
+  padding-bottom: 4px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.service-why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 68px;
+}
+
+.service-why-grid article {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid rgba(205, 239, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.service-why-icon {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  place-items: center;
+  border: 1px solid rgba(104, 189, 255, 0.42);
+  border-radius: 11px;
+  background: rgba(20, 134, 255, 0.18);
+  color: var(--ice-400);
+}
+
+.service-why-grid h3 {
+  max-width: 190px;
+  margin: auto 0 0;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
 .service-insights {
   padding: clamp(100px, 11vw, 156px) var(--section-x);
   background: #fff;
@@ -3569,6 +3642,15 @@ blockquote {
     gap: 30px;
   }
 
+  .service-why-heading {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .service-why-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .service-insight-grid {
     grid-template-columns: 1fr;
   }
@@ -3667,6 +3749,11 @@ blockquote {
   }
 
   .service-insight-grid {
+    margin-top: 48px;
+  }
+
+  .service-why-grid {
+    grid-template-columns: 1fr;
     margin-top: 48px;
   }
 

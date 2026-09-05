@@ -28,7 +28,7 @@ const serviceLinks = [
   ],
   [
     'Cross Dock Services',
-    'Transfer and consolidation 7 miles from NYC.',
+    'Transfer and consolidation support.',
     'cross-dock-services',
   ],
 ];

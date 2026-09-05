@@ -1,7 +1,18 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Check, Snowflake } from 'lucide-react';
+import {
+  ArrowRight,
+  Check,
+  Clock3,
+  MessageCircleMore,
+  Route,
+  ShieldCheck,
+  Snowflake,
+  ThermometerSnowflake,
+  Truck,
+  Warehouse,
+} from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { SiteHeader } from '@/components/site-header';
 
@@ -18,6 +29,12 @@ const servicePages = {
       'Chilled and frozen food loads',
       'Scheduled and recurring routes',
       'Pickup-to-delivery communication',
+    ],
+    whyChoose: [
+      ['Temperature-conscious handling', 'cold'],
+      ['Northeast route coverage', 'route'],
+      ['Reliable delivery windows', 'time'],
+      ['Direct shipment updates', 'communication'],
     ],
     process: [
       [
@@ -51,6 +68,12 @@ const servicePages = {
       'Dedicated operating contact',
       'Capacity built around your schedule',
     ],
+    whyChoose: [
+      ['Capacity built around your plan', 'truck'],
+      ['Consistent route teams', 'route'],
+      ['Predictable weekly movements', 'time'],
+      ['One clear point of contact', 'communication'],
+    ],
     process: [
       [
         '01',
@@ -82,6 +105,12 @@ const servicePages = {
       'Multi-stop shipment coordination',
       'Distribution and consolidation support',
       'Direct status communication',
+    ],
+    whyChoose: [
+      ['Clear multi-stop planning', 'route'],
+      ['Practical shipment visibility', 'communication'],
+      ['Cold-chain focused operations', 'cold'],
+      ['Support when plans change', 'shield'],
     ],
     process: [
       [
@@ -116,6 +145,12 @@ const servicePages = {
       'Documented shipment communication',
       'Clear pickup and delivery accountability',
     ],
+    whyChoose: [
+      ['Controlled handling process', 'shield'],
+      ['Temperature-aware operations', 'cold'],
+      ['Documented communication', 'communication'],
+      ['Accountability at every handoff', 'check'],
+    ],
     process: [
       [
         '01',
@@ -138,15 +173,21 @@ const servicePages = {
   'cross-dock-services': {
     name: 'Cross Dock Services',
     shortLabel: 'Cross-dock support',
-    title: 'Fast transfer and consolidation, just 7 miles from New York City.',
+    title: 'Fast transfer and consolidation for refrigerated food.',
     intro:
-      'AtlanticCold offers cross-dock services close to NYC for refrigerated and frozen food that needs to transfer, consolidate, or keep moving without unnecessary storage time.',
+      'AtlanticCold offers cross-dock services for refrigerated and frozen food that needs to transfer, consolidate, or keep moving without unnecessary storage time.',
     image: '/stock/nj-loading-dock.webp',
     alt: 'Refrigerated truck positioned at a cross-dock loading facility',
     facts: [
-      'Located 7 miles from NYC',
+      'Northeast transfer and consolidation support',
       'Refrigerated and frozen freight',
       'Transfer and consolidation support',
+    ],
+    whyChoose: [
+      ['Purpose-built dock support', 'warehouse'],
+      ['Fast transfer coordination', 'route'],
+      ['Refrigerated freight handling', 'cold'],
+      ['Clear inbound and outbound timing', 'time'],
     ],
     process: [
       [
@@ -168,6 +209,17 @@ const servicePages = {
     insight: 'When cross-docking can reduce food freight handling time',
   },
 } as const;
+
+const whyChooseIcons = {
+  check: ShieldCheck,
+  cold: ThermometerSnowflake,
+  communication: MessageCircleMore,
+  route: Route,
+  shield: ShieldCheck,
+  time: Clock3,
+  truck: Truck,
+  warehouse: Warehouse,
+};
 
 type ServiceSlug = keyof typeof servicePages;
 
@@ -301,6 +353,39 @@ export default async function ServicePage({
               <ArrowRight className="service-process-arrow" size={19} />
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="service-why">
+        <div className="service-why-heading">
+          <div>
+            <span className="section-label section-label-light">
+              Why choose AtlanticCold
+            </span>
+            <h2>
+              Built for the details
+              <br />
+              <span>that keep freight moving.</span>
+            </h2>
+          </div>
+          <p>
+            Temperature-controlled food freight depends on clear planning,
+            dependable equipment, and fast communication when the plan changes.
+          </p>
+        </div>
+        <div className="service-why-grid">
+          {servicePage.whyChoose.map(([title, icon]) => {
+            const Icon = whyChooseIcons[icon];
+
+            return (
+              <article key={title}>
+                <span className="service-why-icon">
+                  <Icon size={23} strokeWidth={1.8} aria-hidden="true" />
+                </span>
+                <h3>{title}</h3>
+              </article>
+            );
+          })}
         </div>
       </section>
 
