@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ArrowDownRight,
   ArrowLeft,
@@ -413,18 +413,60 @@ function Hero() {
 
 function ServicesSection() {
   const servicesCarouselRef = useRef<HTMLDivElement>(null);
+  const [activeService, setActiveService] = useState(0);
 
-  const moveServices = (direction: number) => {
+  const scrollToService = (index: number) => {
     const carousel = servicesCarouselRef.current;
     if (!carousel) return;
 
-    const firstCard = carousel.querySelector<HTMLElement>('.service-card');
-    const distance = firstCard
-      ? firstCard.offsetWidth + 18
-      : carousel.clientWidth * 0.8;
+    const cards = Array.from(
+      carousel.querySelectorAll<HTMLElement>('.service-card'),
+    );
+    const card = cards[index];
+    if (!card) return;
 
-    carousel.scrollBy({ left: direction * distance, behavior: 'smooth' });
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+    const target =
+      index === cards.length - 1
+        ? maxScroll
+        : Math.min(card.offsetLeft, maxScroll);
+
+    carousel.scrollTo({ left: target, behavior: 'smooth' });
+    setActiveService(index);
   };
+
+  const moveServices = (direction: number) => {
+    const nextIndex =
+      (activeService + direction + services.length) % services.length;
+    scrollToService(nextIndex);
+  };
+
+  useEffect(() => {
+    const carousel = servicesCarouselRef.current;
+    if (!carousel) return;
+
+    const updateActiveService = () => {
+      const cards = Array.from(
+        carousel.querySelectorAll<HTMLElement>('.service-card'),
+      );
+      if (!cards.length) return;
+
+      const nearestIndex = cards.reduce((nearest, card, index) => {
+        const nearestDistance = Math.abs(
+          cards[nearest].offsetLeft - carousel.scrollLeft,
+        );
+        const cardDistance = Math.abs(card.offsetLeft - carousel.scrollLeft);
+        return cardDistance < nearestDistance ? index : nearest;
+      }, 0);
+
+      setActiveService(nearestIndex);
+    };
+
+    carousel.addEventListener('scroll', updateActiveService, {
+      passive: true,
+    });
+    return () => carousel.removeEventListener('scroll', updateActiveService);
+  }, []);
 
   return (
     <section className="services-section section-light" id="services">
@@ -492,6 +534,27 @@ function ServicesSection() {
         >
           <ArrowRight size={17} />
         </button>
+        <div
+          className="services-carousel-progress"
+          role="tablist"
+          aria-label="Services"
+        >
+          {services.map((service, index) => (
+            <button
+              className={
+                activeService === index
+                  ? 'services-carousel-dot is-active'
+                  : 'services-carousel-dot'
+              }
+              type="button"
+              role="tab"
+              aria-label={`Show ${service.title}`}
+              aria-selected={activeService === index}
+              onClick={() => scrollToService(index)}
+              key={service.slug}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

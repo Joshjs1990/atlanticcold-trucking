@@ -908,6 +908,40 @@ h2 > span {
   transform: translateY(-1px);
 }
 
+.services-carousel-progress {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 14px;
+  margin-top: 20px;
+}
+
+.services-carousel-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(20, 134, 255, 0.2);
+  cursor: pointer;
+  transition:
+    width 0.3s var(--ease-premium),
+    background-color 0.3s ease,
+    transform 0.3s var(--ease-premium);
+}
+
+.services-carousel-dot:hover {
+  background: rgba(20, 134, 255, 0.58);
+  transform: scale(1.15);
+}
+
+.services-carousel-dot.is-active {
+  width: 32px;
+  background: var(--blue);
+}
+
 .service-card {
   position: relative;
   display: flex;
