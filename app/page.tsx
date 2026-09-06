@@ -413,43 +413,71 @@ function Hero() {
 
 function ServicesSection() {
   const servicesCarouselRef = useRef<HTMLDivElement>(null);
-  const [activeService, setActiveService] = useState(0);
+  const [activeServicePage, setActiveServicePage] = useState(0);
+  const [servicePageCount, setServicePageCount] = useState(1);
 
-  const scrollToService = (index: number) => {
+  const getCarouselMetrics = () => {
     const carousel = servicesCarouselRef.current;
-    if (!carousel) return;
+    if (!carousel) return null;
 
     const cards = Array.from(
       carousel.querySelectorAll<HTMLElement>('.service-card'),
     );
-    const card = cards[index];
-    if (!card) return;
+    const firstCard = cards[0];
+    if (!firstCard) return null;
 
-    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-    const target =
-      index === cards.length - 1
-        ? maxScroll
-        : Math.min(card.offsetLeft, maxScroll);
+    const gap = cards[1]
+      ? cards[1].offsetLeft - firstCard.offsetLeft - firstCard.offsetWidth
+      : 0;
+    const cardStep = firstCard.offsetWidth + gap;
+    const visibleCount = Math.max(
+      1,
+      Math.floor((carousel.clientWidth + gap) / cardStep),
+    );
 
-    carousel.scrollTo({ left: target, behavior: 'smooth' });
-    setActiveService(index);
+    return {
+      carousel,
+      cards,
+      visibleCount,
+      pageCount: Math.max(1, Math.ceil(cards.length / visibleCount)),
+    };
+  };
+
+  const scrollToServicePage = (page: number) => {
+    const metrics = getCarouselMetrics();
+    if (!metrics) return;
+
+    const { carousel, cards, visibleCount, pageCount } = metrics;
+    const nextPage = Math.max(0, Math.min(page, pageCount - 1));
+    const lastStartIndex = Math.max(0, cards.length - visibleCount);
+    const startIndex = Math.min(nextPage * visibleCount, lastStartIndex);
+
+    carousel.scrollTo({
+      left: cards[startIndex].offsetLeft,
+      behavior: 'smooth',
+    });
+    setActiveServicePage(nextPage);
   };
 
   const moveServices = (direction: number) => {
-    const nextIndex =
-      (activeService + direction + services.length) % services.length;
-    scrollToService(nextIndex);
+    const metrics = getCarouselMetrics();
+    if (!metrics) return;
+
+    const nextPage =
+      (activeServicePage + direction + metrics.pageCount) % metrics.pageCount;
+    scrollToServicePage(nextPage);
   };
 
   useEffect(() => {
     const carousel = servicesCarouselRef.current;
     if (!carousel) return;
 
-    const updateActiveService = () => {
-      const cards = Array.from(
-        carousel.querySelectorAll<HTMLElement>('.service-card'),
-      );
-      if (!cards.length) return;
+    const updateCarouselState = () => {
+      const metrics = getCarouselMetrics();
+      if (!metrics) return;
+
+      const { cards, visibleCount, pageCount } = metrics;
+      setServicePageCount(pageCount);
 
       const nearestIndex = cards.reduce((nearest, card, index) => {
         const nearestDistance = Math.abs(
@@ -459,13 +487,20 @@ function ServicesSection() {
         return cardDistance < nearestDistance ? index : nearest;
       }, 0);
 
-      setActiveService(nearestIndex);
+      setActiveServicePage(
+        Math.min(pageCount - 1, Math.floor(nearestIndex / visibleCount)),
+      );
     };
 
-    carousel.addEventListener('scroll', updateActiveService, {
+    updateCarouselState();
+    carousel.addEventListener('scroll', updateCarouselState, {
       passive: true,
     });
-    return () => carousel.removeEventListener('scroll', updateActiveService);
+    window.addEventListener('resize', updateCarouselState);
+    return () => {
+      carousel.removeEventListener('scroll', updateCarouselState);
+      window.removeEventListener('resize', updateCarouselState);
+    };
   }, []);
 
   return (
@@ -539,19 +574,19 @@ function ServicesSection() {
           role="tablist"
           aria-label="Services"
         >
-          {services.map((service, index) => (
+          {Array.from({ length: servicePageCount }).map((_, index) => (
             <button
               className={
-                activeService === index
+                activeServicePage === index
                   ? 'services-carousel-dot is-active'
                   : 'services-carousel-dot'
               }
               type="button"
               role="tab"
-              aria-label={`Show ${service.title}`}
-              aria-selected={activeService === index}
-              onClick={() => scrollToService(index)}
-              key={service.slug}
+              aria-label={`Show service group ${index + 1}`}
+              aria-selected={activeServicePage === index}
+              onClick={() => scrollToServicePage(index)}
+              key={index}
             />
           ))}
         </div>
