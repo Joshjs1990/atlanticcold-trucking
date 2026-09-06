@@ -911,7 +911,7 @@ h2 > span {
 .service-card {
   position: relative;
   display: flex;
-  flex: 0 0 calc((100% - 54px) / 4);
+  flex: 0 0 calc((100% - 36px) / 3);
   min-width: 0;
   flex-direction: column;
   overflow: hidden;
@@ -987,10 +987,13 @@ h2 > span {
   display: flex;
   min-height: 238px;
   flex-direction: column;
+  align-items: center;
   padding: 27px 24px 24px;
+  text-align: center;
 }
 
 .service-card-body h3 {
+  max-width: 280px;
   margin: 0;
   font-size: 25px;
   font-weight: 800;
@@ -1000,6 +1003,7 @@ h2 > span {
 }
 
 .service-card-body p {
+  max-width: 260px;
   margin: 20px 0 0;
   color: #74818c;
   font-size: 13px;
@@ -1009,6 +1013,7 @@ h2 > span {
 .service-card-link {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   margin-top: auto;
   padding-top: 24px;
