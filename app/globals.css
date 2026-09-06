@@ -3121,6 +3121,17 @@ blockquote {
   color: rgba(255, 255, 255, 0.7);
 }
 
+.footer-credit {
+  color: rgba(255, 255, 255, 0.48) !important;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease;
+}
+
+.footer-credit:hover {
+  color: var(--ice-400) !important;
+}
+
 @media (max-width: 1080px) {
   .main-nav {
     gap: 20px;

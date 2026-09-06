@@ -878,6 +878,14 @@ function CTAFooter() {
               <span>
                 <a href="#contact">Privacy</a> / <a href="#contact">Terms</a>
               </span>
+              <a
+                className="footer-credit"
+                href="https://thecoolmoon.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Built by TheCoolMoon
+              </a>
             </div>
           </div>
         </div>
