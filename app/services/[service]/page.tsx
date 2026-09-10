@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { SiteHeader } from '@/components/site-header';
+import { SubpageFooter } from '@/components/subpage-footer';
 
 const servicePages = {
   'refrigerated-transportation': {
@@ -491,6 +492,8 @@ export default async function ServicePage({
           </Link>
         </div>
       </section>
+
+      <SubpageFooter />
     </main>
   );
 }

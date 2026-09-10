@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Check, MapPin } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { SiteHeader } from '@/components/site-header';
+import { SubpageFooter } from '@/components/subpage-footer';
 
 const areas = {
   'new-york': {
@@ -330,6 +331,8 @@ export default async function ServiceAreaPage({
           </Link>
         </div>
       </section>
+
+      <SubpageFooter />
     </main>
   );
 }

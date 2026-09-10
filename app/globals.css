@@ -3132,6 +3132,91 @@ blockquote {
   color: var(--ice-400) !important;
 }
 
+/* Subpage footer */
+.subpage-footer {
+  padding: 0 var(--section-x) 30px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.subpage-footer-inner {
+  width: min(100%, 1240px);
+  display: grid;
+  grid-template-columns: minmax(240px, 1.2fr) minmax(220px, 0.8fr) auto;
+  align-items: end;
+  gap: 44px;
+  margin-inline: auto;
+  padding: 34px 0 22px;
+  border-top: 1px solid rgba(7, 17, 29, 0.14);
+}
+
+.subpage-footer-brand .brand-mark {
+  width: 132px;
+  height: 46px;
+}
+
+.subpage-footer-brand p {
+  max-width: 310px;
+  margin: 15px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.subpage-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  align-items: center;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.subpage-footer-links a,
+.subpage-footer-contact,
+.subpage-footer-credit {
+  transition: color 0.2s ease;
+}
+
+.subpage-footer-links a:hover,
+.subpage-footer-contact:hover,
+.subpage-footer-credit:hover {
+  color: var(--blue);
+}
+
+.subpage-footer-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 8px;
+  color: #81909c;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-align: right;
+}
+
+.subpage-footer-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--blue);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.subpage-footer-credit {
+  color: #81909c;
+  font-size: 9px;
+}
+
 @media (max-width: 1080px) {
   .main-nav {
     gap: 20px;
@@ -3405,6 +3490,17 @@ blockquote {
     flex-direction: row;
     align-items: start;
     justify-content: space-between;
+  }
+
+  .subpage-footer-inner {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 26px;
+  }
+
+  .subpage-footer-meta {
+    align-items: flex-start;
+    text-align: left;
   }
 }
 
