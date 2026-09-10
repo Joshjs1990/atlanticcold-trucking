@@ -1,5 +1,5 @@
-import { Html, OrbitControls, RoundedBox, Text, useCursor, useTexture } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { Html, OrbitControls, RoundedBox, useCursor, useTexture } from '@react-three/drei';
+import { useFrame, useThree } from '@react-three/fiber';
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { mergeGeometries, mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
@@ -413,8 +413,55 @@ function LogoPlane(props) {
   return <Suspense fallback={null}><LogoPlaneContent {...props} /></Suspense>;
 }
 
-function SideText({ children, position, side = 1, fontSize = 0.18, color = C.navy, maxWidth, letterSpacing = 0, anchorX = 'left', anchorY = 'middle', fontWeight = 500, rotation = [0, 0, 0] }) {
-  return <Suspense fallback={null}><Text position={position} rotation={side < 0 ? [0, Math.PI, 0] : rotation} font="/fonts/barlow-condensed-medium-italic.ttf" fontSize={fontSize} color={color} anchorX={anchorX} anchorY={anchorY} maxWidth={maxWidth} letterSpacing={letterSpacing} fontWeight={fontWeight} outlineWidth={0.004} outlineColor={color} renderOrder={4}>{children}</Text></Suspense>;
+function StableText({ children, position, side = 1, fontSize = 0.18, color = C.navy, anchorX = 'left', anchorY = 'middle', fontWeight = 500, rotation = [0, 0, 0] }) {
+  const text = String(children);
+  const textureData = useMemo(() => {
+    if (typeof document === 'undefined') return null;
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (!context) return null;
+
+    const fontPx = 240;
+    context.font = `${fontWeight} ${fontPx}px "Barlow Condensed", "Arial Narrow", Arial, sans-serif`;
+    const metrics = context.measureText(text);
+    const padding = 18;
+    canvas.width = Math.max(64, Math.ceil(metrics.width + padding * 2));
+    canvas.height = 288;
+
+    const drawContext = canvas.getContext('2d');
+    if (!drawContext) return null;
+    drawContext.font = `${fontWeight} ${fontPx}px "Barlow Condensed", "Arial Narrow", Arial, sans-serif`;
+    drawContext.textAlign = 'center';
+    drawContext.textBaseline = 'middle';
+    drawContext.fillStyle = color;
+    drawContext.fillText(text, canvas.width / 2, canvas.height / 2);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.needsUpdate = true;
+
+    return {
+      texture,
+      width: (canvas.width / canvas.height) * fontSize * 1.2,
+      height: fontSize * 1.2,
+    };
+  }, [color, fontSize, fontWeight, text]);
+
+  useEffect(() => () => textureData?.texture.dispose(), [textureData]);
+  if (!textureData) return null;
+
+  const xOffset = anchorX === 'center' ? 0 : anchorX === 'right' ? -textureData.width / 2 : textureData.width / 2;
+  const yOffset = anchorY === 'middle' ? 0 : anchorY === 'top' ? -textureData.height / 2 : textureData.height / 2;
+  const surfaceOffset = rotation[1] === 0 ? side * 0.035 : 0;
+
+  return <mesh position={[position[0] + xOffset, position[1] + yOffset, position[2] + surfaceOffset]} rotation={side < 0 ? [0, Math.PI, 0] : rotation} renderOrder={4}>
+    <planeGeometry args={[textureData.width, textureData.height]} />
+    <meshBasicMaterial map={textureData.texture} transparent side={THREE.DoubleSide} toneMapped={false} />
+  </mesh>;
+}
+
+function SideText(props) {
+  return <StableText {...props} />;
 }
 
 function SnowflakeMark({ position, side = 1 }) {
@@ -870,7 +917,12 @@ function Hotspot({ spot, active, onClick }) {
 
 function CameraRig({ selectedId, controlsRef }) {
   const animation = useRef(null);
-  const defaultView = useMemo(() => ({ position: new THREE.Vector3(13, 6.5, -14.5), target: new THREE.Vector3(-0.7, 2.68, 0) }), []);
+  const { size } = useThree();
+  const isMobile = size.width < 700;
+  const defaultView = useMemo(() => ({
+    position: new THREE.Vector3(isMobile ? 15.8 : 13, isMobile ? 6.8 : 6.5, isMobile ? -17.7 : -14.5),
+    target: new THREE.Vector3(-0.7, isMobile ? 2.38 : 2.68, 0),
+  }), [isMobile]);
   useEffect(() => {
     const spot = HOTSPOTS.find((item) => item.id === selectedId); const controls = controlsRef.current; if (!controls) return;
     animation.current = { position: new THREE.Vector3().copy(controls.object.position), target: new THREE.Vector3().copy(controls.target), toPosition: spot ? new THREE.Vector3(...spot.camera) : defaultView.position.clone(), toTarget: spot ? new THREE.Vector3(...spot.target) : defaultView.target.clone() };
@@ -882,5 +934,7 @@ function CameraRig({ selectedId, controlsRef }) {
 
 export function AtlanticColdTruck({ selectedId, onSelect }) {
   const controlsRef = useRef();
-  return <><group rotation={[0, -0.09, 0]}><TruckGeometry />{HOTSPOTS.map((spot) => <Hotspot key={spot.id} spot={spot} active={selectedId === spot.id} onClick={onSelect} />)}</group><OrbitControls ref={controlsRef} enablePan={false} enableZoom enableDamping dampingFactor={0.065} rotateSpeed={0.6} zoomSpeed={0.75} minDistance={13} maxDistance={24} minPolarAngle={Math.PI * 0.28} maxPolarAngle={Math.PI * 0.57} minAzimuthAngle={-Math.PI * 0.86} maxAzimuthAngle={Math.PI * 0.86} target={[-0.7, 2.58, 0]} touches={{ ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY }} /><CameraRig selectedId={selectedId} controlsRef={controlsRef} /></>;
+  const { size } = useThree();
+  const isMobile = size.width < 700;
+  return <><group position={isMobile ? [0, 0.08, 0] : [0, 0, 0]} scale={isMobile ? 0.82 : 1} rotation={[0, -0.09, 0]}><TruckGeometry />{HOTSPOTS.map((spot) => <Hotspot key={spot.id} spot={spot} active={selectedId === spot.id} onClick={onSelect} />)}</group><OrbitControls ref={controlsRef} enablePan={false} enableZoom enableDamping dampingFactor={0.065} rotateSpeed={0.6} zoomSpeed={0.75} minDistance={13} maxDistance={24} minPolarAngle={Math.PI * 0.28} maxPolarAngle={Math.PI * 0.57} minAzimuthAngle={-Math.PI * 0.86} maxAzimuthAngle={Math.PI * 0.86} target={[-0.7, isMobile ? 2.38 : 2.58, 0]} touches={{ ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY }} /><CameraRig selectedId={selectedId} controlsRef={controlsRef} /></>;
 }
