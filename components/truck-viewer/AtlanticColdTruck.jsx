@@ -410,7 +410,7 @@ function LogoPlane({ position, side = 1, width = 3.7 }) {
 }
 
 function SideText({ children, position, side = 1, fontSize = 0.18, color = C.navy, maxWidth, letterSpacing = 0, anchorX = 'left', anchorY = 'middle', fontWeight = 500, rotation = [0, 0, 0] }) {
-  return <Text position={position} rotation={side < 0 ? [0, Math.PI, 0] : rotation} fontSize={fontSize} color={color} anchorX={anchorX} anchorY={anchorY} maxWidth={maxWidth} letterSpacing={letterSpacing} fontWeight={fontWeight} outlineWidth={0.004} outlineColor={color} renderOrder={4}>{children}</Text>;
+  return <Text position={position} rotation={side < 0 ? [0, Math.PI, 0] : rotation} font="/fonts/barlow-condensed-medium-italic.ttf" fontSize={fontSize} color={color} anchorX={anchorX} anchorY={anchorY} maxWidth={maxWidth} letterSpacing={letterSpacing} fontWeight={fontWeight} outlineWidth={0.004} outlineColor={color} renderOrder={4}>{children}</Text>;
 }
 
 function SideLivery({ side = 1 }) {
