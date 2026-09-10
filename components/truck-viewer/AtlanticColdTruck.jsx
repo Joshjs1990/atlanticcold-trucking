@@ -116,17 +116,21 @@ function FramePrism({ outer, inner, depth = 0.05, color = C.black, roughness = 0
   return <mesh geometry={geometry} castShadow receiveShadow><PbrMaterial color={color} metalness={0} roughness={roughness} clearcoat={0.12} clearcoatRoughness={0.24} /></mesh>;
 }
 
-function GlassPrism({ points, depth = 0.035, position = [0, 0, 0] }) {
+function AutomotiveGlassMaterial({ sideWindow = false }) {
+  return <meshPhysicalMaterial color={sideWindow ? '#e3eceb' : '#d5e3e1'} metalness={0} roughness={sideWindow ? 0.035 : 0.04} transmission={sideWindow ? 0.94 : 0.93} ior={1.5} thickness={sideWindow ? 0.018 : 0.006} envMapIntensity={sideWindow ? 1.6 : 1.35} transparent opacity={sideWindow ? 0.8 : 0.9} depthWrite={false} depthTest side={THREE.DoubleSide} clearcoat={sideWindow ? 0.32 : 0.24} clearcoatRoughness={0.035} />;
+}
+
+function GlassPrism({ points, position = [0, 0, 0] }) {
   const geometry = useMemo(() => {
     const shape = new THREE.Shape();
     points.forEach(([x, y], index) => index === 0 ? shape.moveTo(x, y) : shape.lineTo(x, y));
     shape.closePath();
-    const next = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelSegments: 2, bevelSize: 0.01, bevelThickness: 0.006, curveSegments: 18 });
-    next.translate(0, 0, -depth / 2);
+    const next = new THREE.ShapeGeometry(shape, 18);
+    next.computeVertexNormals();
     return next;
-  }, [depth, points]);
+  }, [points]);
   return <mesh geometry={geometry} position={position} castShadow={false} receiveShadow renderOrder={3}>
-    <meshPhysicalMaterial color="#c7d9d7" metalness={0} roughness={0.055} transparent opacity={0.92} transmission={0.78} ior={1.5} thickness={0.025} envMapIntensity={1.5} depthWrite={false} side={THREE.DoubleSide} clearcoat={0.35} clearcoatRoughness={0.04} />
+    <AutomotiveGlassMaterial sideWindow />
   </mesh>;
 }
 
@@ -144,24 +148,24 @@ function InteriorMaskPrism({ points, depth = 0.018, position = [0, 0, 0] }) {
   </mesh>;
 }
 
-const windshieldPoint = (side, u, v, inset = 0) => {
-  const halfWidth = THREE.MathUtils.lerp(1.09, 0.95, v);
-  const z = side * THREE.MathUtils.lerp(0.045, halfWidth, u);
-  const x = 3.49 - 0.18 * v - 0.1 * Math.pow(u, 2.2) - inset;
-  const y = THREE.MathUtils.lerp(2.59, 3.63, v);
+const windshieldPoint = (side, u, v, inset = 0, sealOverlap = 0) => {
+  const halfWidth = THREE.MathUtils.lerp(1.12 + sealOverlap, 0.99 + sealOverlap, v);
+  const z = side * THREE.MathUtils.lerp(0.012, halfWidth, u);
+  const x = 3.49 - 0.19 * v - 0.1 * Math.pow(u, 2.2) - inset;
+  const y = THREE.MathUtils.lerp(2.5, 3.72, v);
   return new THREE.Vector3(x, y, z);
 };
 
 function CurvedWindshieldPane({ side = 1, backing = false }) {
   const geometry = useMemo(() => {
-    const horizontalSegments = 8;
-    const verticalSegments = 4;
+    const horizontalSegments = 20;
+    const verticalSegments = 10;
     const positions = [];
     const indices = [];
     for (let row = 0; row <= verticalSegments; row += 1) {
       const v = row / verticalSegments;
       for (let column = 0; column <= horizontalSegments; column += 1) {
-        const point = windshieldPoint(side, column / horizontalSegments, v, backing ? 0.024 : 0);
+        const point = windshieldPoint(side, column / horizontalSegments, v, backing ? 0.024 : 0, backing ? 0 : 0.16);
         positions.push(point.x, point.y, point.z);
       }
     }
@@ -169,7 +173,8 @@ function CurvedWindshieldPane({ side = 1, backing = false }) {
       for (let column = 0; column < horizontalSegments; column += 1) {
         const current = row * (horizontalSegments + 1) + column;
         const next = current + horizontalSegments + 1;
-        indices.push(current, next, current + 1, current + 1, next, next + 1);
+        if (side > 0) indices.push(current, next, current + 1, current + 1, next, next + 1);
+        else indices.push(current, current + 1, next, current + 1, next + 1, next);
       }
     }
     const next = new THREE.BufferGeometry();
@@ -182,7 +187,7 @@ function CurvedWindshieldPane({ side = 1, backing = false }) {
     {backing ? (
       <meshStandardMaterial color="#111b1e" roughness={0.68} transparent opacity={0.5} depthWrite={false} side={THREE.DoubleSide} />
     ) : (
-      <meshPhysicalMaterial color="#d5e3e1" metalness={0} roughness={0.045} transmission={0.9} ior={1.5} thickness={0.028} envMapIntensity={1.6} transparent opacity={0.96} depthWrite={false} side={THREE.DoubleSide} clearcoat={0.32} clearcoatRoughness={0.035} />
+      <AutomotiveGlassMaterial />
     )}
   </mesh>;
 }
@@ -196,14 +201,14 @@ function WindshieldSeals() {
   const curves = useMemo(() => {
     const across = (v) => Array.from({ length: 17 }, (_, index) => {
       const signed = index / 8 - 1;
-      const halfWidth = THREE.MathUtils.lerp(1.09, 0.95, v);
+      const halfWidth = THREE.MathUtils.lerp(1.12, 0.99, v);
       const edge = Math.abs(signed);
-      return new THREE.Vector3(3.496 - 0.18 * v - 0.1 * Math.pow(edge, 2.2), THREE.MathUtils.lerp(2.59, 3.63, v), signed * halfWidth);
+      return new THREE.Vector3(3.496 - 0.19 * v - 0.1 * Math.pow(edge, 2.2), THREE.MathUtils.lerp(2.5, 3.72, v), signed * halfWidth);
     });
     const edge = (side) => Array.from({ length: 7 }, (_, index) => windshieldPoint(side, 1, index / 6, -0.006));
     const center = Array.from({ length: 7 }, (_, index) => {
       const v = index / 6;
-      return new THREE.Vector3(3.497 - 0.18 * v, THREE.MathUtils.lerp(2.58, 3.64, v), 0);
+      return new THREE.Vector3(3.497 - 0.19 * v, THREE.MathUtils.lerp(2.49, 3.73, v), 0);
     });
     return [across(0), across(1), edge(-1), edge(1), center];
   }, []);
@@ -219,10 +224,10 @@ function CurvedCabBrow() {
       const t = index / segments;
       const z = THREE.MathUtils.lerp(-1.25, 1.25, t);
       const edge = Math.abs(z) / 1.25;
-      const frontX = 3.45 - 0.11 * edge * edge;
-      const rearX = 3.22 - 0.055 * edge * edge;
-      const topY = 3.86 - 0.018 * edge;
-      const bottomY = 3.75 - 0.014 * edge;
+      const frontX = 3.42 - 0.1 * edge * edge;
+      const rearX = 3.04 - 0.045 * edge * edge;
+      const topY = 3.88 - 0.016 * edge;
+      const bottomY = 3.73 - 0.012 * edge;
       positions.push(frontX, topY, z, rearX, topY, z, frontX, bottomY, z, rearX, bottomY, z);
     }
     const addQuad = (a, b, c, d) => indices.push(a, b, c, a, c, d);
@@ -604,6 +609,11 @@ function CabShellReference() {
     shape.lineTo(3.52, 0.72);
     shape.lineTo(1.18, 0.7);
     shape.closePath();
+    const sideWindowHole = new THREE.Path();
+    const sideWindowPoints = [[1.52, 2.65], [1.57, 2.58], [3.18, 2.55], [3.32, 2.68], [3.38, 3.46], [3.18, 3.7], [1.64, 3.67], [1.52, 3.54]];
+    [...sideWindowPoints].reverse().forEach(([x, y], index) => index === 0 ? sideWindowHole.moveTo(x, y) : sideWindowHole.lineTo(x, y));
+    sideWindowHole.closePath();
+    shape.holes.push(sideWindowHole);
 
     const next = new THREE.ExtrudeGeometry(shape, {
       depth: 2.68,
@@ -614,7 +624,33 @@ function CabShellReference() {
       curveSegments: 24,
     });
     next.translate(0, 0, -1.34);
-    return next;
+    const source = next.index ? next.toNonIndexed() : next;
+    source.computeVertexNormals();
+    const sourcePositions = source.attributes.position;
+    const openedPositions = [];
+    const a = new THREE.Vector3();
+    const b = new THREE.Vector3();
+    const c = new THREE.Vector3();
+    const ab = new THREE.Vector3();
+    const ac = new THREE.Vector3();
+    const normal = new THREE.Vector3();
+    for (let index = 0; index < sourcePositions.count; index += 3) {
+      a.fromBufferAttribute(sourcePositions, index);
+      b.fromBufferAttribute(sourcePositions, index + 1);
+      c.fromBufferAttribute(sourcePositions, index + 2);
+      ab.subVectors(b, a);
+      ac.subVectors(c, a);
+      normal.crossVectors(ab, ac).normalize();
+      const centerX = (a.x + b.x + c.x) / 3;
+      const centerY = (a.y + b.y + c.y) / 3;
+      const isWindshieldCover = centerX > 3.17 && centerY > 2.36 && centerY < 3.73 && Math.abs(normal.x) > 0.42 && Math.abs(normal.z) < 0.35;
+      const isSideCapIntrusion = centerX > 3.05 && centerY > 2.43 && centerY < 3.74 && Math.abs(normal.z) > 0.88;
+      if (!isWindshieldCover && !isSideCapIntrusion) openedPositions.push(a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z);
+    }
+    const opened = new THREE.BufferGeometry();
+    opened.setAttribute('position', new THREE.Float32BufferAttribute(openedPositions, 3));
+    opened.computeVertexNormals();
+    return opened;
   }, []);
 
   return <mesh geometry={geometry} castShadow receiveShadow><PbrMaterial color={C.painted} roughness={0.24} metalness={0.015} clearcoat={0.78} clearcoatRoughness={0.13} envMapIntensity={1.1} /></mesh>;
@@ -683,8 +719,6 @@ function FrontBumperReference() {
 
 function FrontWindshieldReference() {
   return <group>
-    <CurvedWindshieldPane side={-1} backing />
-    <CurvedWindshieldPane side={1} backing />
     <CurvedWindshieldPane side={-1} />
     <CurvedWindshieldPane side={1} />
     <WindshieldSeals />
@@ -696,14 +730,24 @@ function SideWindowReference({ side = 1 }) {
   const pane = [[1.52, 2.65], [1.57, 2.58], [2.62, 2.57], [2.81, 2.67], [2.96, 3.44], [2.79, 3.66], [1.64, 3.67], [1.52, 3.54]];
   return <group>
     <group position={[0, 0, side * 1.43]}><FramePrism outer={outer} inner={pane} depth={0.055} roughness={0.42} /></group>
-    <group position={[0, 0, side * 1.372]}><InteriorMaskPrism points={pane} depth={0.02} /></group>
     <group position={[0, 0, side * 1.405]}><GlassPrism points={pane} depth={0.03} position={[0, 0, side * 0.004]} /></group>
+  </group>;
+}
+
+function CabInteriorSideLiner({ side = 1 }) {
+  const outer = [[1.28, 2.38], [3.42, 2.38], [3.24, 3.55], [2.96, 3.86], [1.38, 3.86]];
+  const opening = [[1.5, 2.64], [1.55, 2.55], [2.64, 2.54], [2.85, 2.65], [3.0, 3.46], [2.81, 3.7], [1.61, 3.71], [1.49, 3.55]];
+  return <group position={[0, 0, side * 1.285]}>
+    <FramePrism outer={outer} inner={opening} depth={0.028} color="#182326" roughness={0.72} />
   </group>;
 }
 
 function CabInteriorReference() {
   return <group>
-    <Box args={[0.14, 1.42, 2.18]} color="#10191c" position={[1.56, 2.9, 0]} radius={0.08} castShadow={false} roughness={0.62} metalness={0} />
+    <Box args={[0.14, 1.62, 2.28]} color="#151f22" position={[1.56, 2.98, 0]} radius={0.08} castShadow={false} roughness={0.68} metalness={0} />
+    <Box args={[1.62, 0.08, 2.22]} color="#1a2528" position={[2.3, 3.76, 0]} radius={0.035} castShadow={false} roughness={0.76} metalness={0} />
+    <CabInteriorSideLiner side={1} />
+    <CabInteriorSideLiner side={-1} />
     <Box args={[0.72, 0.2, 2.05]} color="#172225" position={[2.95, 2.56, 0]} rotation={[0, 0, 0.04]} radius={0.06} roughness={0.5} metalness={0} />
     <Box args={[1.28, 0.36, 2.06]} color="#0e171a" position={[2.26, 2.14, 0]} radius={0.08} roughness={0.74} metalness={0} />
     <Box args={[0.58, 0.88, 0.56]} color="#172124" position={[2.22, 2.72, -0.58]} radius={0.12} roughness={0.7} metalness={0} />
@@ -757,8 +801,6 @@ function CabReference() {
       <Box args={[0.045, 0.032, 0.86]} color={C.black} position={[3.485, 2.65, side * 0.54]} rotation={[side * 0.16, 0, 0]} radius={0.012} castShadow={false} roughness={0.42} metalness={0} />
       <Box args={[0.04, 0.025, 0.55]} color={C.black} position={[3.48, 2.59, side * 0.31]} rotation={[side * 0.3, 0, 0]} radius={0.01} castShadow={false} roughness={0.42} metalness={0} />
     </group>)}
-    <Box args={[0.24, 0.13, 2.5]} color={C.painted} position={[2.94, 4.02, 0]} rotation={[0, 0, 0.03]} radius={0.035} />
-    <Box args={[0.18, 0.09, 2.38]} color={C.white} position={[2.86, 4.08, 0]} rotation={[0, 0, 0.03]} radius={0.025} />
     <FrontClipReference />
     {[1, -1].map((side) => <group key={side}>
       <Box args={[0.92, 0.1, 0.18]} color={C.black} position={[4.18, 2.2, side * 1.56]} rotation={[0, 0, -0.09]} radius={0.055} />
