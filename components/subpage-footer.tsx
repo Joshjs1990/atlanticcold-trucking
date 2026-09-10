@@ -5,7 +5,7 @@ import { BrandMark } from '@/components/site-header';
 const footerLinks = [
   ['Services', '/services'],
   ['Coverage', '/coverage'],
-  ['Equipment', '/#equipment'],
+  ['Equipment', '/equipment'],
   ['Contact', '/contact'],
 ] as const;
 

@@ -199,7 +199,7 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
-        <Link href="/#equipment" onClick={closeMenu}>
+        <Link href="/equipment" onClick={closeMenu}>
           Equipment
         </Link>
         <Link href="/#about" onClick={closeMenu}>
