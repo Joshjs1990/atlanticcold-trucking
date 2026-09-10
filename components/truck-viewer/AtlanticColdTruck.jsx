@@ -1,6 +1,6 @@
 import { Html, OrbitControls, RoundedBox, Text, useCursor, useTexture } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { mergeGeometries, mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
@@ -404,13 +404,26 @@ function FrontClipReference() {
   return <mesh geometry={geometry} castShadow receiveShadow><PbrMaterial color="#fbfdfb" roughness={0.24} metalness={0.02} clearcoat={0.78} clearcoatRoughness={0.13} envMapIntensity={1.1} /></mesh>;
 }
 
-function LogoPlane({ position, side = 1, width = 3.7 }) {
+function LogoPlaneContent({ position, side = 1, width = 3.7 }) {
   const logo = useTexture('/atlantic-cold-logo.webp');
   return <mesh position={position} rotation={[0, side < 0 ? Math.PI : 0, 0]} renderOrder={3}><planeGeometry args={[width, width / 3]} /><meshBasicMaterial map={logo} transparent alphaTest={0.02} side={THREE.DoubleSide} toneMapped={false} /></mesh>;
 }
 
+function LogoPlane(props) {
+  return <Suspense fallback={null}><LogoPlaneContent {...props} /></Suspense>;
+}
+
 function SideText({ children, position, side = 1, fontSize = 0.18, color = C.navy, maxWidth, letterSpacing = 0, anchorX = 'left', anchorY = 'middle', fontWeight = 500, rotation = [0, 0, 0] }) {
-  return <Text position={position} rotation={side < 0 ? [0, Math.PI, 0] : rotation} font="/fonts/barlow-condensed-medium-italic.ttf" fontSize={fontSize} color={color} anchorX={anchorX} anchorY={anchorY} maxWidth={maxWidth} letterSpacing={letterSpacing} fontWeight={fontWeight} outlineWidth={0.004} outlineColor={color} renderOrder={4}>{children}</Text>;
+  return <Suspense fallback={null}><Text position={position} rotation={side < 0 ? [0, Math.PI, 0] : rotation} font="/fonts/barlow-condensed-medium-italic.ttf" fontSize={fontSize} color={color} anchorX={anchorX} anchorY={anchorY} maxWidth={maxWidth} letterSpacing={letterSpacing} fontWeight={fontWeight} outlineWidth={0.004} outlineColor={color} renderOrder={4}>{children}</Text></Suspense>;
+}
+
+function SnowflakeMark({ position, side = 1 }) {
+  return <group position={position} rotation={[0, side < 0 ? Math.PI : 0, 0]}>
+    <Box args={[0.22, 0.025, 0.025]} color={C.blue} radius={0.01} castShadow={false} receiveShadow={false} />
+    <Box args={[0.025, 0.22, 0.025]} color={C.blue} radius={0.01} castShadow={false} receiveShadow={false} />
+    <Box args={[0.17, 0.025, 0.025]} color={C.blue} rotation={[0, 0, Math.PI / 4]} radius={0.01} castShadow={false} receiveShadow={false} />
+    <Box args={[0.17, 0.025, 0.025]} color={C.blue} rotation={[0, 0, -Math.PI / 4]} radius={0.01} castShadow={false} receiveShadow={false} />
+  </group>;
 }
 
 function SideLivery({ side = 1 }) {
@@ -431,7 +444,7 @@ function SideLivery({ side = 1 }) {
     <SideText position={[logoX, 2.56, side * 1.415]} side={side} fontSize={0.28} color={C.blue} letterSpacing={0.02} fontWeight={700} anchorX="center">atlanticcold.com</SideText>
     <group>
       {serviceRows.map(({ lines, y }) => <group key={lines.join('-')}>
-        <SideText position={[serviceIconX, y, side * 1.415]} side={side} fontSize={0.17} color={C.blue} anchorX="center" fontWeight={700}>❄</SideText>
+        <SnowflakeMark position={[serviceIconX, y, side * 1.415]} side={side} />
         {lines.map((line, lineIndex) => <SideText key={line} position={[serviceTextX, y + (lines.length === 1 ? 0 : lineIndex === 0 ? 0.115 : -0.115), side * 1.415]} side={side} fontSize={0.18} color={C.navy} letterSpacing={-0.01} fontWeight={700} anchorX={side === 1 ? 'right' : 'left'}>{line}</SideText>)}
       </group>)}
     </group>

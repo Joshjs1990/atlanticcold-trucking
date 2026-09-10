@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Suspense } from 'react';
-import { ContactShadows, Html, useTexture } from '@react-three/drei';
+import { ContactShadows, useTexture } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
 import {
@@ -82,21 +81,7 @@ export function EquipmentViewer() {
             position={[-7, 7, -6]}
             rotation={[-0.25, -0.65, 0]}
           />
-          <Suspense
-            fallback={
-              <Html center>
-                <div className="equipment-viewer-loading">
-                  Loading fleet model
-                  <span />
-                </div>
-              </Html>
-            }
-          >
-            <AtlanticColdTruck
-              selectedId={selectedId}
-              onSelect={setSelectedId}
-            />
-          </Suspense>
+          <AtlanticColdTruck selectedId={selectedId} onSelect={setSelectedId} />
           <ContactShadows
             position={[0, 0.04, 0]}
             opacity={0.46}

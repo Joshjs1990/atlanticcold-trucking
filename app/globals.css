@@ -3760,33 +3760,6 @@ blockquote {
   touch-action: none;
 }
 
-.equipment-viewer-loading {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 14px;
-  border: 1px solid rgba(205, 239, 255, 0.22);
-  border-radius: 8px;
-  background: rgba(7, 17, 29, 0.62);
-  box-shadow: 0 12px 28px rgba(3, 9, 16, 0.24);
-  color: rgba(255, 255, 255, 0.76);
-  font-family: var(--font-heading);
-  font-size: 11px;
-  font-style: italic;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.equipment-viewer-loading span {
-  width: 7px;
-  height: 7px;
-  border: 1px solid var(--ice-400);
-  border-radius: 50%;
-  animation: equipment-hotspot-pulse 1.4s ease-out infinite;
-}
-
 .equipment-viewer-caption {
   position: absolute;
   bottom: 17px;
