@@ -3,8 +3,8 @@ import { ArrowUpRight } from 'lucide-react';
 import { BrandMark } from '@/components/site-header';
 
 const footerLinks = [
-  ['Services', '/#services'],
-  ['Coverage', '/#coverage'],
+  ['Services', '/services'],
+  ['Coverage', '/coverage'],
   ['Equipment', '/#equipment'],
   ['Contact', '/#contact'],
 ] as const;
