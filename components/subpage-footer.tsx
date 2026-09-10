@@ -6,7 +6,7 @@ const footerLinks = [
   ['Services', '/services'],
   ['Coverage', '/coverage'],
   ['Equipment', '/#equipment'],
-  ['Contact', '/#contact'],
+  ['Contact', '/contact'],
 ] as const;
 
 export function SubpageFooter() {
@@ -30,7 +30,7 @@ export function SubpageFooter() {
         </nav>
 
         <div className="subpage-footer-meta">
-          <Link className="subpage-footer-contact" href="/#contact">
+          <Link className="subpage-footer-contact" href="/contact">
             Request a quote <ArrowUpRight size={14} />
           </Link>
           <span>© 2025 AtlanticCold Trucking</span>

@@ -205,14 +205,14 @@ export function SiteHeader() {
         <Link href="/#about" onClick={closeMenu}>
           About
         </Link>
-        <Link href="/#contact" onClick={closeMenu}>
+        <Link href="/contact" onClick={closeMenu}>
           Contact
         </Link>
-        <Link className="mobile-quote" href="/#contact" onClick={closeMenu}>
+        <Link className="mobile-quote" href="/contact" onClick={closeMenu}>
           Request a quote <ArrowRight size={15} />
         </Link>
       </nav>
-      <Link className="header-quote" href="/#contact">
+      <Link className="header-quote" href="/contact">
         <span>Request a quote</span>
         <ArrowRight size={15} />
       </Link>
