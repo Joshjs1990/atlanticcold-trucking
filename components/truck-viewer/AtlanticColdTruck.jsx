@@ -23,14 +23,14 @@ const CARGO_BOX = {
 
 const HEADLIGHT_PROFILES = {
   recess: [
-    ['M', 4.96, 1.31], ['L', 5.7, 1.23], ['Q', 5.94, 1.24, 6.0, 1.39],
-    ['L', 5.87, 1.64], ['Q', 5.78, 1.76, 5.54, 1.76], ['L', 5.05, 1.69],
-    ['Q', 4.9, 1.6, 4.96, 1.31],
+    ['M', 5.02, 1.32], ['L', 5.7, 1.27], ['Q', 5.9, 1.28, 5.94, 1.4],
+    ['L', 5.84, 1.61], ['Q', 5.76, 1.7, 5.54, 1.7], ['L', 5.1, 1.65],
+    ['Q', 4.99, 1.57, 5.02, 1.32],
   ],
   pocket: [
-    ['M', 5.02, 1.36], ['L', 5.56, 1.31], ['Q', 5.7, 1.32, 5.74, 1.41],
-    ['L', 5.67, 1.56], ['Q', 5.61, 1.64, 5.48, 1.64], ['L', 5.12, 1.59],
-    ['Q', 4.98, 1.54, 5.02, 1.36],
+    ['M', 5.08, 1.38], ['L', 5.56, 1.34], ['Q', 5.68, 1.35, 5.71, 1.42],
+    ['L', 5.65, 1.54], ['Q', 5.59, 1.61, 5.48, 1.61], ['L', 5.15, 1.57],
+    ['Q', 5.05, 1.52, 5.08, 1.38],
   ],
   bezel: [
     ['M', 5.11, 1.385], ['L', 5.54, 1.345], ['Q', 5.66, 1.345, 5.69, 1.415],
@@ -485,14 +485,14 @@ function SideLivery({ side = 1 }) {
   ];
   const logoX = CARGO_BOX.centerX + 1.05;
   const serviceIconX = -4.62;
-  const serviceTextX = -4.95;
+  const serviceTextX = serviceIconX - 0.28;
   return <group>
     <LogoPlane position={[logoX, 3.88, side * 1.415]} side={side} width={3.95} />
     <SideText position={[logoX, 2.56, side * 1.415]} side={side} fontSize={0.28} color={C.blue} letterSpacing={0.02} fontWeight={700} anchorX="center">atlanticcold.com</SideText>
     <group>
       {serviceRows.map(({ lines, y }) => <group key={lines.join('-')}>
         <SnowflakeMark position={[serviceIconX, y, side * 1.415]} side={side} />
-        {lines.map((line, lineIndex) => <SideText key={line} position={[serviceTextX, y + (lines.length === 1 ? 0 : lineIndex === 0 ? 0.115 : -0.115), side * 1.415]} side={side} fontSize={0.18} color={C.navy} letterSpacing={-0.01} fontWeight={700} anchorX={side === 1 ? 'right' : 'left'}>{line}</SideText>)}
+        {lines.map((line, lineIndex) => <SideText key={line} position={[serviceTextX, y + (lines.length === 1 ? 0 : lineIndex === 0 ? 0.115 : -0.115), side * 1.415]} side={side} fontSize={0.18} color={C.navy} letterSpacing={-0.01} fontWeight={700} anchorX="right">{line}</SideText>)}
       </group>)}
     </group>
     <Box args={[7.82, 0.06, 0.035]} color={C.aluminum} position={[CARGO_BOX.centerX, 1.64, side * 1.42]} radius={0.01} castShadow={false} />
@@ -721,8 +721,8 @@ function HeadlightReference({ side = 1 }) {
     <group position={[5.42, 1.5, side * 1.3]} rotation={[0, side * 0.28, 0]}>
       <group position={[-5.42, -1.5, -side * 1.3]}>
         <group position={[0, 0, side * 1.34]}>
-          <group position={[0, 0, -side * 0.018]}><SmoothPrism commands={HEADLIGHT_PROFILES.recess} depth={0.018} color={C.black} roughness={0.42} bevelSize={0.012} bevelThickness={0.004} /></group>
-          <group position={[0, 0, -side * 0.004]}><SmoothPrism commands={HEADLIGHT_PROFILES.pocket} depth={0.006} color="#263338" roughness={0.28} bevelSize={0.008} bevelThickness={0.003} /></group>
+          <group position={[0, 0, -side * 0.018]}><SmoothPrism commands={HEADLIGHT_PROFILES.recess} depth={0.014} color="#3d4c52" roughness={0.42} bevelSize={0.008} bevelThickness={0.003} /></group>
+          <group position={[0, 0, -side * 0.004]}><SmoothPrism commands={HEADLIGHT_PROFILES.pocket} depth={0.006} color="#596a70" roughness={0.28} bevelSize={0.006} bevelThickness={0.002} /></group>
           <group position={[0, 0, side * 0.005]}><SmoothPrism commands={HEADLIGHT_PROFILES.bezel} depth={0.008} color={C.chrome} metalness={0.82} roughness={0.14} bevelSize={0.008} bevelThickness={0.003} /></group>
           <group position={[0, 0, side * 0.005]}><SmoothPrism commands={HEADLIGHT_PROFILES.reflector} depth={0.008} color={C.chrome} metalness={0.98} roughness={0.09} bevelSize={0.006} bevelThickness={0.002} physical clearcoat={0.18} clearcoatRoughness={0.06} envMapIntensity={1.4} /></group>
           <group position={[0, 0, side * 0.013]}><SmoothPrism commands={HEADLIGHT_PROFILES.lens} depth={0.009} color="#f3fbfc" metalness={0.02} roughness={0.045} bevelSize={0.006} bevelThickness={0.002} physical transparent opacity={0.34} transmission={0.8} ior={1.5} thickness={0.035} envMapIntensity={1.6} depthWrite={false} clearcoat={0.9} clearcoatRoughness={0.035} /></group>
@@ -915,20 +915,72 @@ function Hotspot({ spot, active, onClick }) {
   return <group position={spot.position}><Html center distanceFactor={8.5} zIndexRange={[10, 0]}><button className={`hotspot ${active ? 'is-active' : ''}`} type="button" aria-label={`View ${spot.title}`} onClick={(event) => { event.stopPropagation(); onClick(spot.id); }} onPointerEnter={() => setHovered(true)} onPointerLeave={() => setHovered(false)}><span className="hotspot-ring" /><span className="hotspot-core">+</span></button></Html></group>;
 }
 
+function restoreCameraControls(controls, transition) {
+  controls.enableDamping = transition.enableDamping;
+  controls.minAzimuthAngle = transition.minAzimuthAngle;
+  controls.maxAzimuthAngle = transition.maxAzimuthAngle;
+}
+
 function CameraRig({ selectedId, controlsRef }) {
   const animation = useRef(null);
   const { size } = useThree();
   const isMobile = size.width < 700;
   const defaultView = useMemo(() => ({
     position: new THREE.Vector3(isMobile ? 15.8 : 13, isMobile ? 6.8 : 6.5, isMobile ? -17.7 : -14.5),
-    target: new THREE.Vector3(-0.7, isMobile ? 2.38 : 2.68, 0),
+    target: new THREE.Vector3(-0.7, isMobile ? 0.18 : 2.68, 0),
   }), [isMobile]);
   useEffect(() => {
     const spot = HOTSPOTS.find((item) => item.id === selectedId); const controls = controlsRef.current; if (!controls) return;
-    animation.current = { position: new THREE.Vector3().copy(controls.object.position), target: new THREE.Vector3().copy(controls.target), toPosition: spot ? new THREE.Vector3(...spot.camera) : defaultView.position.clone(), toTarget: spot ? new THREE.Vector3(...spot.target) : defaultView.target.clone() };
-  }, [defaultView, selectedId, controlsRef]);
-  useEffect(() => { const controls = controlsRef.current; if (!controls) return undefined; const cancel = () => { if (animation.current) animation.current = null; }; controls.addEventListener('start', cancel); return () => controls.removeEventListener('start', cancel); }, [controlsRef]);
-  useFrame(({ camera }) => { const transition = animation.current; if (!transition || !controlsRef.current) return; transition.position.lerp(transition.toPosition, 0.075); transition.target.lerp(transition.toTarget, 0.075); camera.position.copy(transition.position); controlsRef.current.target.copy(transition.target); controlsRef.current.update(); if (transition.position.distanceToSquared(transition.toPosition) < 0.004 && transition.target.distanceToSquared(transition.toTarget) < 0.004) animation.current = null; });
+    let toPosition = defaultView.position.clone();
+    let toTarget = defaultView.target.clone();
+    if (spot) {
+      toTarget = new THREE.Vector3(...spot.target);
+      toPosition = new THREE.Vector3(...spot.camera);
+      if (isMobile) {
+        const mobileShift = 1.65;
+        toTarget.y -= mobileShift;
+        toPosition.y -= mobileShift;
+        toPosition = toTarget.clone().add(toPosition.sub(toTarget).multiplyScalar(1.18));
+      }
+    }
+    if (animation.current) restoreCameraControls(controls, animation.current);
+    animation.current = {
+      startPosition: controls.object.position.clone(),
+      startTarget: controls.target.clone(),
+      position: controls.object.position.clone(),
+      target: controls.target.clone(),
+      toPosition,
+      toTarget,
+      elapsed: 0,
+      duration: isMobile ? 0.82 : 0.95,
+      enableDamping: controls.enableDamping,
+      minAzimuthAngle: controls.minAzimuthAngle,
+      maxAzimuthAngle: controls.maxAzimuthAngle,
+    };
+    controls.enableDamping = false;
+    controls.minAzimuthAngle = -Infinity;
+    controls.maxAzimuthAngle = Infinity;
+  }, [defaultView, isMobile, selectedId, controlsRef]);
+  useEffect(() => { const controls = controlsRef.current; if (!controls) return undefined; const cancel = () => { if (animation.current) { restoreCameraControls(controls, animation.current); animation.current = null; } }; controls.addEventListener('start', cancel); return () => controls.removeEventListener('start', cancel); }, [controlsRef]);
+  useFrame(({ camera }, delta) => {
+    const transition = animation.current;
+    if (!transition || !controlsRef.current) return;
+    transition.elapsed = Math.min(transition.elapsed + delta, transition.duration);
+    const progress = transition.elapsed / transition.duration;
+    const eased = progress < 0.5
+      ? 4 * progress * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+    transition.position.lerpVectors(transition.startPosition, transition.toPosition, eased);
+    transition.target.lerpVectors(transition.startTarget, transition.toTarget, eased);
+    camera.position.copy(transition.position);
+    controlsRef.current.target.copy(transition.target);
+    controlsRef.current.update();
+    if (progress >= 1) {
+      restoreCameraControls(controlsRef.current, transition);
+      controlsRef.current.update();
+      animation.current = null;
+    }
+  });
   return null;
 }
 
@@ -936,5 +988,5 @@ export function AtlanticColdTruck({ selectedId, onSelect }) {
   const controlsRef = useRef();
   const { size } = useThree();
   const isMobile = size.width < 700;
-  return <><group position={isMobile ? [0, 0.08, 0] : [0, 0, 0]} scale={isMobile ? 0.82 : 1} rotation={[0, -0.09, 0]}><TruckGeometry />{HOTSPOTS.map((spot) => <Hotspot key={spot.id} spot={spot} active={selectedId === spot.id} onClick={onSelect} />)}</group><OrbitControls ref={controlsRef} enablePan={false} enableZoom enableDamping dampingFactor={0.065} rotateSpeed={0.6} zoomSpeed={0.75} minDistance={13} maxDistance={24} minPolarAngle={Math.PI * 0.28} maxPolarAngle={Math.PI * 0.57} minAzimuthAngle={-Math.PI * 0.86} maxAzimuthAngle={Math.PI * 0.86} target={[-0.7, isMobile ? 2.38 : 2.58, 0]} touches={{ ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY }} /><CameraRig selectedId={selectedId} controlsRef={controlsRef} /></>;
+  return <><group position={isMobile ? [0, 0.08, 0] : [0, 0, 0]} scale={isMobile ? 0.82 : 1} rotation={[0, -0.09, 0]}><TruckGeometry />{HOTSPOTS.map((spot) => <Hotspot key={spot.id} spot={spot} active={selectedId === spot.id} onClick={onSelect} />)}</group><OrbitControls ref={controlsRef} enablePan={false} enableZoom enableDamping dampingFactor={0.065} rotateSpeed={0.6} zoomSpeed={0.75} minDistance={13} maxDistance={24} minPolarAngle={Math.PI * 0.28} maxPolarAngle={Math.PI * 0.57} minAzimuthAngle={-Math.PI * 0.86} maxAzimuthAngle={Math.PI * 0.86} target={[-0.7, isMobile ? 0.18 : 2.58, 0]} touches={{ ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY }} /><CameraRig selectedId={selectedId} controlsRef={controlsRef} /></>;
 }

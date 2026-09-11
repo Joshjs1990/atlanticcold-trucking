@@ -45,7 +45,6 @@ export function EquipmentViewer() {
             gl.outputColorSpace = THREE.SRGBColorSpace;
           }}
         >
-          <color attach="background" args={['#07111d']} />
           <fog attach="fog" args={['#07111d', 18, 34]} />
           <ambientLight intensity={0.52} />
           <directionalLight

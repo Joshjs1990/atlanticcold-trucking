@@ -75,7 +75,7 @@ export function BrandMark({
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openMegaMenu, setOpenMegaMenu] = useState<
     'services' | 'coverage' | null
@@ -113,8 +113,10 @@ export function SiteHeader() {
   };
 
   return (
-    <header className={scrolled ? 'site-header is-scrolled' : 'site-header'}>
-      <BrandMark variant={scrolled ? 'dark' : 'light'} />
+    <header
+      className={`site-header${scrolled ? ' is-scrolled' : ''}${darkOnTop ? ' is-light-top' : ''}`}
+    >
+      <BrandMark variant={scrolled || darkOnTop ? 'dark' : 'light'} />
       <nav
         id="primary-navigation"
         className={menuOpen ? 'main-nav is-open' : 'main-nav'}
@@ -199,7 +201,14 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
-        <Link href="/equipment" onClick={closeMenu}>
+        <Link
+          href="/equipment"
+          onClick={(event) => {
+            event.preventDefault();
+            closeMenu();
+            window.location.assign('/equipment');
+          }}
+        >
           Equipment
         </Link>
         <Link href="/#about" onClick={closeMenu}>

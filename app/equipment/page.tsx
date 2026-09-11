@@ -20,11 +20,11 @@ const equipmentPoints = [
 export default function EquipmentPage() {
   return (
     <main className="equipment-page">
-      <SiteHeader />
+      <SiteHeader darkOnTop />
 
       <section className="equipment-page-hero" id="top">
         <div className="equipment-page-intro">
-          <span className="section-label section-label-light">
+          <span className="section-label">
             Purpose-built fleet
           </span>
           <h1>
@@ -42,13 +42,20 @@ export default function EquipmentPage() {
       </section>
 
       <section className="equipment-page-details">
-        <div>
+        <div className="equipment-page-details-heading">
           <span className="section-label">Fleet details</span>
           <h2>
             Built around
             <br />
             <span>the delivery.</span>
           </h2>
+        </div>
+        <div className="equipment-page-details-visual">
+          <img
+            className="equipment-page-details-image"
+            src="/stock/atlanticcold-truck.webp"
+            alt="AtlanticCold refrigerated truck"
+          />
         </div>
         <div className="equipment-page-details-copy">
           <p>
