@@ -3034,7 +3034,7 @@ blockquote {
 .insight-card h3 {
   margin: 18px 0 0;
   font-family: var(--font-heading);
-  font-size: clamp(28px, 2.5vw, 38px);
+  font-size: clamp(22px, 2vw, 30px);
   font-style: italic;
   font-weight: 800;
   letter-spacing: -0.035em;
@@ -3077,7 +3077,7 @@ blockquote {
 }
 
 .insight-card.is-featured h3 {
-  font-size: clamp(36px, 4.1vw, 66px);
+  font-size: clamp(30px, 3.2vw, 48px);
 }
 
 .insight-card.is-featured p {
@@ -5694,7 +5694,7 @@ blockquote {
   }
 
   .insight-card.is-featured h3 {
-    font-size: clamp(34px, 10vw, 52px);
+    font-size: clamp(29px, 8.5vw, 42px);
   }
 
   .insight-card.is-featured .insight-card-body {

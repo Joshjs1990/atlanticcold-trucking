@@ -59,10 +59,6 @@ export function BrandMark({
       href="/"
       className="brand-mark"
       aria-label="AtlanticCold Trucking home"
-      onClick={(event) => {
-        event.preventDefault();
-        window.location.assign('/');
-      }}
     >
       <Image
         src={logo}
@@ -106,8 +102,6 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
     setOpenMegaMenu(null);
   };
 
-  const closeMobileMenu = () => setMenuOpen(false);
-
   const toggleMegaMenu = (menu: 'services' | 'coverage') => {
     setOpenMegaMenu((current) => (current === menu ? null : menu));
   };
@@ -146,11 +140,7 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
               {serviceLinks.map(([title, copy, slug]) => (
                 <Link
                   href={`/services/${slug}`}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    closeMenu();
-                    window.location.assign(`/services/${slug}`);
-                  }}
+                  onClick={closeMenu}
                   key={title}
                 >
                   <strong>{title}</strong>
@@ -179,7 +169,7 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
               <p>
                 Serving New York, New Jersey, Pennsylvania, and Connecticut.
               </p>
-              <Link href="/#coverage" onClick={closeMobileMenu}>
+              <Link href="/#coverage" onClick={closeMenu}>
                 View all coverage <ArrowRight size={13} />
               </Link>
             </div>
@@ -187,11 +177,7 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
               {coverageLinks.map(([name, code, slug]) => (
                 <Link
                   href={`/service-areas/${slug}`}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    closeMenu();
-                    window.location.assign(`/service-areas/${slug}`);
-                  }}
+                  onClick={closeMenu}
                   key={slug}
                 >
                   <strong>{name}</strong>
@@ -203,11 +189,7 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
         </div>
         <Link
           href="/equipment"
-          onClick={(event) => {
-            event.preventDefault();
-            closeMenu();
-            window.location.assign('/equipment');
-          }}
+          onClick={closeMenu}
         >
           Equipment
         </Link>
