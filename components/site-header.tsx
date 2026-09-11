@@ -1,9 +1,9 @@
+/* oxlint-disable next/no-html-link-for-pages */
 'use client';
 
 import { useEffect, useState } from 'react';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 const serviceLinks = [
   [
@@ -55,7 +55,7 @@ export function BrandMark({
       : { width: 140, height: 47 };
 
   return (
-    <Link
+    <a
       href="/"
       className="brand-mark"
       aria-label="AtlanticCold Trucking home"
@@ -67,7 +67,7 @@ export function BrandMark({
         height={dimensions.height}
         priority
       />
-    </Link>
+    </a>
   );
 }
 
@@ -138,14 +138,14 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
             </div>
             <div className="mega-menu-links">
               {serviceLinks.map(([title, copy, slug]) => (
-                <Link
+                <a
                   href={`/services/${slug}`}
                   onClick={closeMenu}
                   key={title}
                 >
                   <strong>{title}</strong>
                   <small>{copy}</small>
-                </Link>
+                </a>
               ))}
             </div>
           </div>
@@ -169,47 +169,47 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
               <p>
                 Serving New York, New Jersey, Pennsylvania, and Connecticut.
               </p>
-              <Link href="/#coverage" onClick={closeMenu}>
+              <a href="/#coverage" onClick={closeMenu}>
                 View all coverage <ArrowRight size={13} />
-              </Link>
+              </a>
             </div>
             <div className="mega-menu-links">
               {coverageLinks.map(([name, code, slug]) => (
-                <Link
+                <a
                   href={`/service-areas/${slug}`}
                   onClick={closeMenu}
                   key={slug}
                 >
                   <strong>{name}</strong>
                   <small>{code} service area</small>
-                </Link>
+                </a>
               ))}
             </div>
           </div>
         </div>
-        <Link
+        <a
           href="/equipment"
           onClick={closeMenu}
         >
           Equipment
-        </Link>
-        <Link href="/insights" onClick={closeMenu}>
+        </a>
+        <a href="/insights" onClick={closeMenu}>
           Insights
-        </Link>
-        <Link href="/#about" onClick={closeMenu}>
+        </a>
+        <a href="/#about" onClick={closeMenu}>
           About
-        </Link>
-        <Link href="/contact" onClick={closeMenu}>
+        </a>
+        <a href="/contact" onClick={closeMenu}>
           Contact
-        </Link>
-        <Link className="mobile-quote" href="/contact" onClick={closeMenu}>
+        </a>
+        <a className="mobile-quote" href="/contact" onClick={closeMenu}>
           Request a quote <ArrowRight size={15} />
-        </Link>
+        </a>
       </nav>
-      <Link className="header-quote" href="/contact">
+      <a className="header-quote" href="/contact">
         <span>Request a quote</span>
         <ArrowRight size={15} />
-      </Link>
+      </a>
       <button
         className="menu-toggle"
         onClick={() => setMenuOpen((open) => !open)}

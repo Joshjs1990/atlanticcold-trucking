@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import type { InsightPost } from '@/app/insights/data';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -12,7 +11,7 @@ export function InsightCard({
 }) {
   return (
     <article className={`insight-card${featured ? ' is-featured' : ''}`}>
-      <Link className="insight-card-image" href={`/insights/${post.slug}`}>
+      <a className="insight-card-image" href={`/insights/${post.slug}`}>
         <Image
           src={post.image}
           alt={post.imageAlt}
@@ -21,19 +20,19 @@ export function InsightCard({
           sizes={featured ? '(max-width: 900px) 100vw, 62vw' : '(max-width: 900px) 100vw, 31vw'}
         />
         <span className="insight-card-image-wash" aria-hidden="true" />
-      </Link>
+      </a>
       <div className="insight-card-body">
         <div className="insight-card-meta">
           <span>{post.category}</span>
           <span>{post.readTime}</span>
         </div>
         <h3>
-          <Link href={`/insights/${post.slug}`}>{post.title}</Link>
+          <a href={`/insights/${post.slug}`}>{post.title}</a>
         </h3>
         <p>{post.excerpt}</p>
-        <Link className="text-cta dark-cta" href={`/insights/${post.slug}`}>
+        <a className="text-cta dark-cta" href={`/insights/${post.slug}`}>
           Read insight <ArrowUpRight size={16} />
-        </Link>
+        </a>
       </div>
     </article>
   );
