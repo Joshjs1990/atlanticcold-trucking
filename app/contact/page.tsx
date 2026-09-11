@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
+import { ContactForm } from '@/components/contact-form';
 
 const faqs = [
   [
@@ -67,45 +68,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <form
-            className="contact-page-form location-quote-form"
-            action="mailto:hello@atlanticcold.com"
-            method="post"
-            encType="text/plain"
-          >
-            <span className="location-form-kicker">Request a quote</span>
-            <h2>Tell us about the load.</h2>
-            <div className="location-form-grid">
-              <label>
-                <span>Name</span>
-                <input name="name" type="text" autoComplete="name" required />
-              </label>
-              <label>
-                <span>Email</span>
-                <input
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                />
-              </label>
-              <label>
-                <span>Company</span>
-                <input name="company" type="text" autoComplete="organization" />
-              </label>
-              <label>
-                <span>Phone</span>
-                <input name="phone" type="tel" autoComplete="tel" />
-              </label>
-              <label className="location-form-wide">
-                <span>Pickup, destination, and freight details</span>
-                <textarea name="freight-details" rows={5} required />
-              </label>
-            </div>
-            <button type="submit">
-              Send inquiry <ArrowRight size={17} />
-            </button>
-          </form>
+          <ContactForm variant="quote" />
         </div>
       </section>
 

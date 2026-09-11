@@ -6,6 +6,7 @@ const footerLinks = [
   ['Services', '/services'],
   ['Coverage', '/coverage'],
   ['Equipment', '/equipment'],
+  ['Insights', '/insights'],
   ['Contact', '/contact'],
 ] as const;
 

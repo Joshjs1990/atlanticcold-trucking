@@ -211,6 +211,9 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
         >
           Equipment
         </Link>
+        <Link href="/insights" onClick={closeMenu}>
+          Insights
+        </Link>
         <Link href="/#about" onClick={closeMenu}>
           About
         </Link>

@@ -29,3 +29,23 @@ For Cloudflare Workers Builds, use:
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy --config wrangler.jsonc`
 - Root directory: `/`
+
+## Contact form email delivery
+
+The contact page, homepage footer form, and service-area quote forms submit to
+`/api/contact`, which sends the inquiry through Resend. Copy `.env.example` to
+`.env.local` for local development and set `RESEND_API_KEY` to a Resend API
+key. `RESEND_TO_EMAIL` is the inbox that receives inquiries, and
+`RESEND_FROM_EMAIL` should use a sender address from a domain verified in
+Resend. The example `onboarding@resend.dev` sender is only suitable for initial
+testing.
+
+For the Cloudflare Worker, add the API key as a secret rather than committing
+it to Git:
+
+```bash
+npx wrangler secret put RESEND_API_KEY --config wrangler.jsonc
+```
+
+Set `RESEND_TO_EMAIL` and `RESEND_FROM_EMAIL` as Worker variables in the
+Cloudflare dashboard or in the Wrangler configuration when ready.

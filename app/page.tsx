@@ -9,9 +9,13 @@ import {
   Snowflake,
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BrandMark, SiteHeader } from '@/components/site-header';
+import { ContactForm } from '@/components/contact-form';
+import { InsightCard } from '@/components/insight-card';
+import { insightPosts } from '@/app/insights/data';
 
 const heroVideo =
   'https://www.youtube.com/embed/3_wATua3mLI?autoplay=1&mute=1&controls=0&loop=1&playlist=3_wATua3mLI&playsinline=1&rel=0&modestbranding=1';
@@ -802,6 +806,37 @@ function TestimonialSection() {
   );
 }
 
+function InsightsPreviewSection() {
+  return (
+    <section className="insights-preview-section section-light" id="insights">
+      <div className="insights-preview-heading">
+        <div>
+          <span className="section-label">Insights</span>
+          <h2>
+            Practical notes
+            <br />
+            <span>from the cold chain.</span>
+          </h2>
+        </div>
+        <div>
+          <p>
+            Straightforward guidance for planning refrigerated and frozen food
+            freight across the Northeast.
+          </p>
+          <Link className="text-cta dark-cta" href="/insights">
+            View all insights <ArrowRight size={17} />
+          </Link>
+        </div>
+      </div>
+      <div className="insights-preview-grid">
+        {insightPosts.slice(0, 3).map((post) => (
+          <InsightCard post={post} key={post.slug} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function CTAFooter() {
   return (
     <footer className="site-footer" id="contact">
@@ -831,40 +866,7 @@ function CTAFooter() {
               serving New York, New Jersey, Pennsylvania, and Connecticut.
             </p>
           </div>
-          <form
-            className="footer-form"
-            action="mailto:hello@atlanticcold.com"
-            method="post"
-            encType="text/plain"
-          >
-            <span className="footer-form-label">Start a conversation</span>
-            <div className="footer-form-grid">
-              <label>
-                <span>Name</span>
-                <input name="name" type="text" autoComplete="name" required />
-              </label>
-              <label>
-                <span>Email</span>
-                <input
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                />
-              </label>
-              <label>
-                <span>Company</span>
-                <input name="company" type="text" autoComplete="organization" />
-              </label>
-              <label>
-                <span>How can we help?</span>
-                <textarea name="message" rows={3} required />
-              </label>
-            </div>
-            <button className="footer-form-submit" type="submit">
-              Send inquiry <ArrowRight size={18} />
-            </button>
-          </form>
+          <ContactForm variant="footer" />
           <div className="footer-bottom">
             <BrandMark variant="light" />
             <div className="footer-links">
@@ -907,6 +909,7 @@ export default function Home() {
       <MetricsSection />
       <EquipmentSection />
       <TestimonialSection />
+      <InsightsPreviewSection />
       <CTAFooter />
     </main>
   );

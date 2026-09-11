@@ -5,6 +5,7 @@ import { ArrowRight, Check, MapPin } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
+import { ContactForm } from '@/components/contact-form';
 
 const areas = {
   'new-york': {
@@ -122,45 +123,7 @@ export default async function ServiceAreaPage({
               <MapPin size={17} /> {area.corridors}
             </div>
           </div>
-          <form
-            className="location-quote-form"
-            action="mailto:hello@atlanticcold.com"
-            method="post"
-            encType="text/plain"
-          >
-            <span className="location-form-kicker">Request a quote</span>
-            <h2>Tell us about the load.</h2>
-            <div className="location-form-grid">
-              <label>
-                <span>Name</span>
-                <input name="name" type="text" autoComplete="name" required />
-              </label>
-              <label>
-                <span>Email</span>
-                <input
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                />
-              </label>
-              <label>
-                <span>Company</span>
-                <input name="company" type="text" autoComplete="organization" />
-              </label>
-              <label>
-                <span>Phone</span>
-                <input name="phone" type="tel" autoComplete="tel" />
-              </label>
-              <label className="location-form-wide">
-                <span>Pickup, destination, and freight details</span>
-                <textarea name="freight-details" rows={4} required />
-              </label>
-            </div>
-            <button type="submit">
-              Send inquiry <ArrowRight size={17} />
-            </button>
-          </form>
+          <ContactForm variant="quote" location={area.name} />
         </div>
       </section>
 
