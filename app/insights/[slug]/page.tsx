@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { notFound } from 'next/navigation';
-import { ContactForm } from '@/components/contact-form';
 import { InsightCard } from '@/components/insight-card';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
@@ -134,19 +133,6 @@ export default async function InsightPostPage({ params }: InsightPageProps) {
           </div>
         </article>
 
-        <aside className="insight-sidebar">
-          <div className="insight-sidebar-sticky">
-            <div className="insight-sidebar-heading">
-              <span className="section-label section-label-light">Talk to AtlanticCold</span>
-              <h2>Move the conversation forward.</h2>
-              <p>
-                Tell us what you are moving, where it needs to go, and when it
-                needs to arrive.
-              </p>
-            </div>
-            <ContactForm variant="quote" />
-          </div>
-        </aside>
       </div>
 
       <section className="related-insights">
