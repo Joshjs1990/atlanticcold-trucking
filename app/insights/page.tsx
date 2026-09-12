@@ -7,6 +7,9 @@ import { SubpageFooter } from '@/components/subpage-footer';
 import { InsightCard } from '@/components/insight-card';
 import { insightPosts } from './data';
 
+const insightsHeroImage =
+  'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=2200&q=86';
+
 export const metadata: Metadata = {
   title: 'Insights | AtlanticCold Trucking',
   description:
@@ -29,8 +32,8 @@ export default function InsightsPage() {
       <section className="insights-hero" id="top">
         <div className="insights-hero-media">
           <Image
-            src={featured.image}
-            alt={featured.imageAlt}
+            src={insightsHeroImage}
+            alt="Freight truck travelling on an open road"
             fill
             priority
             unoptimized
