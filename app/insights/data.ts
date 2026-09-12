@@ -31,10 +31,9 @@ export const insightPosts: InsightPost[] = [
       'What food manufacturers, distributors, wholesalers, and retailers should plan for when refrigerated freight moves through New York, New Jersey, Pennsylvania, and Connecticut.',
     published: 'September 2026',
     readTime: '8 min read',
-    image:
-      'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1800&q=85',
-    imageAlt: 'Freight truck travelling through a mountain pass',
-    imageCredit: 'Image via Unsplash',
+    image: '/metrics-winter-truck.webp',
+    imageAlt: 'Refrigerated truck travelling on a snowy mountain road',
+    imageCredit: 'AtlanticCold image library',
     metaTitle: 'Refrigerated Trucking in the Northeast | AtlanticCold Insights',
     metaDescription:
       'A practical guide to refrigerated trucking for food shippers moving temperature-controlled freight through New York, New Jersey, Pennsylvania, and Connecticut.',
