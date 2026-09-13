@@ -8,7 +8,7 @@ import { InsightCard } from '@/components/insight-card';
 import { insightPosts } from './data';
 
 const insightsHeroImage =
-  'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=2200&q=86';
+  'https://images.pexels.com/photos/35563167/pexels-photo-35563167/free-photo-of-winter-highway-with-trucks-and-traffic-in-motion.jpeg?auto=compress&cs=tinysrgb&w=2200';
 
 export const metadata: Metadata = {
   title: 'Insights | AtlanticCold Trucking',
@@ -33,7 +33,7 @@ export default function InsightsPage() {
         <div className="insights-hero-media">
           <Image
             src={insightsHeroImage}
-            alt="Freight truck travelling on an open road"
+            alt="Trucks travelling on a snowy winter highway"
             fill
             priority
             unoptimized
