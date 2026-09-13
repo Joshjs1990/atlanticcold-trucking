@@ -196,7 +196,7 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
         <a href="/insights" onClick={closeMenu}>
           Insights
         </a>
-        <a href="/#about" onClick={closeMenu}>
+        <a href="/about" onClick={closeMenu}>
           About
         </a>
         <a href="/contact" onClick={closeMenu}>

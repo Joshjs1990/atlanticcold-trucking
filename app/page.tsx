@@ -872,7 +872,7 @@ function CTAFooter() {
             <div className="footer-links">
               <a href="#services">Services</a>
               <a href="#equipment">Equipment</a>
-              <a href="#about">About</a>
+              <a href="/about">About</a>
               <a href="#contact">Contact</a>
             </div>
             <div className="footer-meta">
