@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import {
   ArrowRight,
   Check,
@@ -308,9 +307,9 @@ export default async function ServicePage({
             <h1>{servicePage.title}</h1>
             <p>{servicePage.intro}</p>
             <div className="service-hero-actions">
-              <Link className="footer-button" href="/#contact">
+              <a className="footer-button" href="/#contact">
                 Request a quote <ArrowRight size={17} />
-              </Link>
+              </a>
               <a className="service-text-link" href="#service-details">
                 See how it works <ArrowRight size={16} />
               </a>
@@ -348,9 +347,9 @@ export default async function ServicePage({
             We work with your team to make the requirements clear, the timing
             realistic, and the next step easy to confirm.
           </p>
-          <Link className="text-cta dark-cta" href="/#contact">
+          <a className="text-cta dark-cta" href="/#contact">
             Talk to our team <ArrowRight size={17} />
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -487,9 +486,9 @@ export default async function ServicePage({
             Share the lane, timing, and load details. We’ll help you identify
             the right next step.
           </p>
-          <Link className="footer-button" href="/#contact">
+          <a className="footer-button" href="/#contact">
             Request a quote <ArrowRight size={17} />
-          </Link>
+          </a>
         </div>
       </section>
 

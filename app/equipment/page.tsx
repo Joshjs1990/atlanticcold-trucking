@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { ArrowRight, Check, Snowflake, Truck } from 'lucide-react';
-import Link from 'next/link';
 import { EquipmentViewer } from '@/components/equipment-viewer';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
@@ -78,9 +77,9 @@ export default function EquipmentPage() {
               <Truck size={17} /> Regional fleet
             </span>
           </div>
-          <Link className="text-cta dark-cta" href="/contact">
+          <a className="text-cta dark-cta" href="/contact">
             Talk to our team <ArrowRight size={17} />
-          </Link>
+          </a>
         </div>
       </section>
 

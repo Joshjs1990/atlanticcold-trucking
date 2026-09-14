@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
@@ -80,9 +79,9 @@ export default function ServicesPage() {
               Transportation, dedicated capacity, cross-dock support, and
               cold-chain coordination for food shippers across the Northeast.
             </p>
-            <Link className="footer-button" href="/#contact">
+            <a className="footer-button" href="/#contact">
               Talk to our team <ArrowRight size={17} />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -119,9 +118,9 @@ export default function ServicesPage() {
               <div className="overview-card-body">
                 <h3>{service.name}</h3>
                 <p>{service.copy}</p>
-                <Link href={`/services/${service.slug}`}>
+                <a href={`/services/${service.slug}`}>
                   Explore service <ArrowRight size={16} />
-                </Link>
+                </a>
               </div>
             </article>
           ))}
@@ -139,9 +138,9 @@ export default function ServicesPage() {
             <span>your freight.</span>
           </h2>
         </div>
-        <Link className="footer-button" href="/#contact">
+        <a className="footer-button" href="/#contact">
           Request a quote <ArrowRight size={17} />
-        </Link>
+        </a>
       </section>
 
       <SubpageFooter />

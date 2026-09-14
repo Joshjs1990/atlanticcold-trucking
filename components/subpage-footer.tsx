@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { BrandMark } from '@/components/site-header';
 
@@ -25,16 +24,16 @@ export function SubpageFooter() {
 
         <nav className="subpage-footer-links" aria-label="Footer navigation">
           {footerLinks.map(([label, href]) => (
-            <Link href={href} key={label}>
+            <a href={href} key={label}>
               {label}
-            </Link>
+            </a>
           ))}
         </nav>
 
         <div className="subpage-footer-meta">
-          <Link className="subpage-footer-contact" href="/contact">
+          <a className="subpage-footer-contact" href="/contact">
             Request a quote <ArrowUpRight size={14} />
-          </Link>
+          </a>
           <span>© 2025 AtlanticCold Trucking</span>
           <a
             className="subpage-footer-credit"

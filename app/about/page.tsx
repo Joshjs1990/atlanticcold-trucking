@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowRight, Check, MapPin, MessageCircle, Thermometer } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
@@ -64,9 +63,9 @@ export default function AboutPage() {
             AtlanticCold transports refrigerated and frozen food throughout New
             York, New Jersey, Pennsylvania, and Connecticut.
           </p>
-          <Link className="footer-button" href="/contact">
+          <a className="footer-button" href="/contact">
             Talk to our team <ArrowRight size={17} />
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -152,9 +151,9 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-          <Link className="text-cta dark-cta" href="/services">
+          <a className="text-cta dark-cta" href="/services">
             Explore our services <ArrowRight size={17} />
-          </Link>
+          </a>
         </div>
       </section>
 

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowRight, MapPin, Route, Snowflake } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
@@ -69,9 +68,9 @@ export default function CoveragePage() {
               AtlanticCold transports refrigerated and frozen food throughout
               New York, New Jersey, Pennsylvania, and Connecticut.
             </p>
-            <Link className="footer-button" href="/#contact">
+            <a className="footer-button" href="/#contact">
               Confirm a lane <ArrowRight size={17} />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -108,7 +107,7 @@ export default function CoveragePage() {
 
           <div className="coverage-overview-areas">
             {areas.map((area) => (
-              <Link
+              <a
                 className="coverage-overview-card"
                 href={`/service-areas/${area.slug}`}
                 key={area.slug}
@@ -119,7 +118,7 @@ export default function CoveragePage() {
                   <p>{area.copy}</p>
                 </div>
                 <ArrowRight size={18} />
-              </Link>
+              </a>
             ))}
           </div>
         </div>
@@ -162,9 +161,9 @@ export default function CoveragePage() {
             <span>your lane.</span>
           </h2>
         </div>
-        <Link className="footer-button" href="/#contact">
+        <a className="footer-button" href="/#contact">
           Talk to our team <ArrowRight size={17} />
-        </Link>
+        </a>
       </section>
 
       <SubpageFooter />

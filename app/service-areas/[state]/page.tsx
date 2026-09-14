@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowRight, Check, MapPin } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { SiteHeader } from '@/components/site-header';
@@ -206,9 +205,9 @@ export default async function ServiceAreaPage({
               width="900"
               height="640"
             >
-              <Link href={`/service-areas/${state}`}>
+              <a href={`/service-areas/${state}`}>
                 View {area.name} refrigerated trucking coverage
-              </Link>
+              </a>
             </object>
             <p className="location-map-instruction">
               Hover a state to preview its corridors. Click to view the service
@@ -289,9 +288,9 @@ export default async function ServiceAreaPage({
             <br />
             <span>across {area.name}.</span>
           </h2>
-          <Link href="#top" className="footer-button">
+          <a href="#top" className="footer-button">
             Request a quote <ArrowRight size={18} />
-          </Link>
+          </a>
         </div>
       </section>
 

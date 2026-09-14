@@ -9,7 +9,6 @@ import {
   Snowflake,
 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BrandMark, SiteHeader } from '@/components/site-header';
@@ -823,9 +822,9 @@ function InsightsPreviewSection() {
             Straightforward guidance for planning refrigerated and frozen food
             freight across the Northeast.
           </p>
-          <Link className="text-cta dark-cta" href="/insights">
+          <a className="text-cta dark-cta" href="/insights">
             View all insights <ArrowRight size={17} />
-          </Link>
+          </a>
         </div>
       </div>
       <div className="insights-preview-grid">

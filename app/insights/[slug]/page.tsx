@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { ContactForm } from '@/components/contact-form';
@@ -76,9 +75,9 @@ export default async function InsightPostPage({ params }: InsightPageProps) {
         </div>
         <div className="insight-post-hero-overlay" />
         <div className="insight-post-hero-inner">
-          <Link className="insight-back-link" href="/insights">
+          <a className="insight-back-link" href="/insights">
             <ArrowLeft size={15} /> Back to insights
-          </Link>
+          </a>
           <div className="insight-post-hero-meta">
             <span>{post.category}</span>
             <span>{post.readTime}</span>
@@ -128,9 +127,9 @@ export default async function InsightPostPage({ params }: InsightPageProps) {
               Share the route, product, timing, and temperature requirement.
               AtlanticCold will help identify the right next step.
             </p>
-            <Link className="text-cta dark-cta" href="/contact">
+            <a className="text-cta dark-cta" href="/contact">
               Start a conversation <ArrowRight size={17} />
-            </Link>
+            </a>
           </div>
         </article>
 

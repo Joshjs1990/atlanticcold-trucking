@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
@@ -82,9 +81,9 @@ export default function InsightsPage() {
               dedicated routes, supply-chain coordination, and cross-dock
               services throughout the Northeast.
             </p>
-            <Link className="text-cta" href="/contact">
+            <a className="text-cta" href="/contact">
               Talk to our team <ArrowRight size={17} />
-            </Link>
+            </a>
           </div>
         </div>
 
