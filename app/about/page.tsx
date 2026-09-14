@@ -51,8 +51,8 @@ export default function AboutPage() {
       <section className="about-hero" id="top">
         <div className="about-hero-media">
           <Image
-            src="/stock/ny-winter-truck.webp"
-            alt="Refrigerated truck travelling through a snowy Northeast landscape"
+            src="/metrics-20260911-140943.webp"
+            alt="AtlanticCold refrigerated truck ready for Northeast delivery"
             fill
             priority
             unoptimized
