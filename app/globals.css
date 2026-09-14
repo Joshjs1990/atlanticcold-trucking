@@ -2579,6 +2579,15 @@ h2 > span {
   color: #fff;
 }
 
+.metrics-section::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(3, 9, 16, 0.2);
+  content: '';
+  pointer-events: none;
+}
+
 .metrics-background {
   position: absolute;
   inset: -7% 0;
