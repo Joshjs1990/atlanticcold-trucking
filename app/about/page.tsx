@@ -1,14 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  ArrowRight,
-  Check,
-  MapPin,
-  MessageCircle,
-  Snowflake,
-  Thermometer,
-} from 'lucide-react';
+import { ArrowRight, Check, MapPin, MessageCircle, Thermometer } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
 
@@ -163,21 +156,6 @@ export default function AboutPage() {
             Explore our services <ArrowRight size={17} />
           </Link>
         </div>
-      </section>
-
-      <section className="about-cta">
-        <Snowflake size={24} aria-hidden="true" />
-        <div>
-          <span className="section-label section-label-light">Ready to plan the move?</span>
-          <h2>
-            Tell us about
-            <br />
-            <span>your freight.</span>
-          </h2>
-        </div>
-        <Link className="footer-button" href="/contact">
-          Start a conversation <ArrowRight size={17} />
-        </Link>
       </section>
 
       <SubpageFooter />
