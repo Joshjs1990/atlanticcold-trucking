@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
@@ -33,12 +34,26 @@ export const metadata: Metadata = {
     'Contact AtlanticCold about refrigerated and frozen food transportation across New York, New Jersey, Pennsylvania, and Connecticut.',
 };
 
+const contactHeroImage =
+  'https://images.unsplash.com/photo-1769697756481-ef0b61fbd7cf?auto=format&fit=crop&w=2200&q=84';
+
 export default function ContactPage() {
   return (
     <main className="contact-page">
       <SiteHeader />
 
       <section className="contact-page-hero" id="top">
+        <div className="contact-page-hero-media" aria-hidden="true">
+          <Image
+            src={contactHeroImage}
+            alt="Trucks travelling on a snowy highway"
+            fill
+            priority
+            unoptimized
+            sizes="100vw"
+          />
+        </div>
+        <div className="contact-page-hero-overlay" aria-hidden="true" />
         <div className="contact-page-inner">
           <div className="contact-page-copy">
             <span className="section-label section-label-light">

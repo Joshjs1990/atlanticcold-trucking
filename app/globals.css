@@ -4434,9 +4434,33 @@ blockquote {
 }
 
 .contact-page-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   padding: 160px var(--section-x) 112px;
   background: var(--navy-900);
   color: #fff;
+}
+
+.contact-page-hero-media,
+.contact-page-hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.contact-page-hero-media {
+  z-index: -2;
+}
+
+.contact-page-hero-media img {
+  object-fit: cover;
+  object-position: center 58%;
+  filter: saturate(0.62) contrast(1.08);
+}
+
+.contact-page-hero-overlay {
+  z-index: -1;
+  background: rgba(3, 9, 16, 0.72);
 }
 
 .contact-page-inner {
