@@ -1089,7 +1089,7 @@ h2 > span {
 /* Coverage */
 .coverage-section {
   min-height: 900px;
-  padding: var(--section-y) var(--section-x) 120px;
+  padding: calc(var(--section-y) * 0.5) var(--section-x) 120px;
   overflow: hidden;
   background: #fff;
 }
