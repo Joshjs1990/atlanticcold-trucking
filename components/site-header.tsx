@@ -2,7 +2,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, Plus, X } from 'lucide-react';
 import Image from 'next/image';
 
 const serviceLinks = [
@@ -124,6 +124,7 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
             aria-controls="services-mega-menu"
           >
             Services
+            <Plus className="mega-trigger-icon" size={18} aria-hidden="true" />
           </button>
           <div id="services-mega-menu" className="mega-menu mega-menu-services">
             <div className="mega-menu-intro">
@@ -154,6 +155,7 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
             aria-controls="coverage-mega-menu"
           >
             Coverage
+            <Plus className="mega-trigger-icon" size={18} aria-hidden="true" />
           </button>
           <div id="coverage-mega-menu" className="mega-menu mega-menu-coverage">
             <div className="mega-menu-intro">
