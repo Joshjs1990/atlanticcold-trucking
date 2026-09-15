@@ -5421,6 +5421,10 @@ blockquote {
     display: flex;
   }
 
+  .site-header.is-light-top:not(.is-scrolled) .main-nav {
+    color: white;
+  }
+
   .main-nav a {
     min-height: 48px;
     display: flex;
