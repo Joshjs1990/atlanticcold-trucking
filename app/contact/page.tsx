@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, Printer } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
 import { ContactForm } from '@/components/contact-form';
@@ -31,7 +31,7 @@ const faqs = [
 export const metadata: Metadata = {
   title: 'Contact | AtlanticCold Trucking',
   description:
-    'Contact AtlanticCold about refrigerated and frozen food transportation across New York, New Jersey, Pennsylvania, and Connecticut.',
+    'Contact Atlantic Cold Trucking in Totowa, New Jersey about refrigerated and frozen truckload and LTL transportation.',
 };
 
 const contactHeroImage =
@@ -71,15 +71,18 @@ export default function ContactPage() {
             </p>
             <div className="contact-page-details">
               <span>
-                <MapPin size={17} /> New York, New Jersey, Pennsylvania, and
-                Connecticut
+                <MapPin size={17} /> 111 Maltese Drive, 1st Floor, Totowa, NJ
+                07512
               </span>
-              <a href="mailto:hello@atlanticcold.com">
-                <Mail size={17} /> hello@atlanticcold.com
+              <a href="mailto:MarkD@atlanticcold.com">
+                <Mail size={17} /> MarkD@atlanticcold.com
               </a>
-              <a href="tel:+12015550190">
-                <Phone size={17} /> (201) 555-0190
+              <a href="tel:+19738378585">
+                <Phone size={17} /> 973-837-8585
               </a>
+              <span>
+                <Printer size={17} /> Fax: 973-837-8586
+              </span>
             </div>
           </div>
 

@@ -7,6 +7,7 @@ const footerLinks = [
   ['Equipment', '/equipment'],
   ['Insights', '/insights'],
   ['About', '/about'],
+  ['Forms', '/forms'],
   ['Contact', '/contact'],
 ] as const;
 
@@ -17,9 +18,14 @@ export function SubpageFooter() {
         <div className="subpage-footer-brand">
           <BrandMark variant="dark" />
           <p>
-            Refrigerated and frozen food transportation across New York, New
-            Jersey, Pennsylvania, and Connecticut.
+            Family-owned refrigerated and frozen truckload and
+            less-than-truckload transportation serving the greater New York area
+            since 1979.
           </p>
+          <div className="subpage-footer-contact-details">
+            <a href="tel:+19738378585">973-837-8585</a>
+            <a href="mailto:MarkD@atlanticcold.com">MarkD@atlanticcold.com</a>
+          </div>
         </div>
 
         <nav className="subpage-footer-links" aria-label="Footer navigation">
@@ -34,7 +40,7 @@ export function SubpageFooter() {
           <a className="subpage-footer-contact" href="/contact">
             Request a quote <ArrowUpRight size={14} />
           </a>
-          <span>© 2025 AtlanticCold Trucking</span>
+          <span>© 2026 Atlantic Cold Trucking</span>
           <a
             className="subpage-footer-credit"
             href="https://thecoolmoon.com/"

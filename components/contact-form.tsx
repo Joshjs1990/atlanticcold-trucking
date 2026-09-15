@@ -3,7 +3,9 @@
 import { useState, type ComponentProps } from 'react';
 import { ArrowRight } from 'lucide-react';
 
-type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0];
+type FormSubmitEvent = Parameters<
+  NonNullable<ComponentProps<'form'>['onSubmit']>
+>[0];
 
 type ContactFormProps = {
   variant: 'quote' | 'footer';
@@ -11,7 +13,9 @@ type ContactFormProps = {
 };
 
 export function ContactForm({ variant, location }: ContactFormProps) {
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<
+    'idle' | 'sending' | 'success' | 'error'
+  >('idle');
   const isQuote = variant === 'quote';
 
   async function handleSubmit(event: FormSubmitEvent) {
@@ -25,7 +29,11 @@ export function ContactForm({ variant, location }: ContactFormProps) {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...values, location, source: location ? `${location} service area` : variant }),
+        body: JSON.stringify({
+          ...values,
+          location,
+          source: location ? `${location} service area` : variant,
+        }),
       });
 
       if (!response.ok) throw new Error('Unable to send inquiry');
@@ -104,11 +112,13 @@ export function ContactForm({ variant, location }: ContactFormProps) {
         type="submit"
         disabled={status === 'sending'}
       >
-        {status === 'sending' ? 'Sending…' : 'Send inquiry'} <ArrowRight size={isQuote ? 17 : 18} />
+        {status === 'sending' ? 'Sending…' : 'Send inquiry'}{' '}
+        <ArrowRight size={isQuote ? 17 : 18} />
       </button>
       <output className={`contact-form-status is-${status}`} aria-live="polite">
         {status === 'success' && 'Thanks — your inquiry has been sent.'}
-        {status === 'error' && 'We could not send that yet. Please email hello@atlanticcold.com.'}
+        {status === 'error' &&
+          'We could not send that yet. Please email MarkD@atlanticcold.com.'}
       </output>
     </form>
   );

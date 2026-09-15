@@ -55,11 +55,7 @@ export function BrandMark({
       : { width: 140, height: 47 };
 
   return (
-    <a
-      href="/"
-      className="brand-mark"
-      aria-label="AtlanticCold Trucking home"
-    >
+    <a href="/" className="brand-mark" aria-label="AtlanticCold Trucking home">
       <Image
         src={logo}
         alt="AtlanticCold Trucking"
@@ -138,11 +134,7 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
             </div>
             <div className="mega-menu-links">
               {serviceLinks.map(([title, copy, slug]) => (
-                <a
-                  href={`/services/${slug}`}
-                  onClick={closeMenu}
-                  key={title}
-                >
+                <a href={`/services/${slug}`} onClick={closeMenu} key={title}>
                   <strong>{title}</strong>
                   <small>{copy}</small>
                 </a>
@@ -187,10 +179,7 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
             </div>
           </div>
         </div>
-        <a
-          href="/equipment"
-          onClick={closeMenu}
-        >
+        <a href="/equipment" onClick={closeMenu}>
           Equipment
         </a>
         <a href="/insights" onClick={closeMenu}>
@@ -198,6 +187,9 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
         </a>
         <a href="/about" onClick={closeMenu}>
           About
+        </a>
+        <a href="/forms" onClick={closeMenu}>
+          Forms
         </a>
         <a href="/contact" onClick={closeMenu}>
           Contact

@@ -91,10 +91,10 @@ const coverageAreas = [
 ];
 
 const metrics = [
-  { value: 99.8, decimals: 1, suffix: '%', label: 'On-time delivery' },
-  { value: 24, decimals: 0, suffix: '/7', label: 'Temperature monitoring' },
-  { value: 150, decimals: 0, suffix: '+', label: 'Modern reefer units' },
-  { value: 25, decimals: 0, suffix: '+', label: 'Years of experience' },
+  { value: 25, decimals: 0, suffix: '+', label: 'Years of service' },
+  { value: 24, decimals: 0, suffix: '/7', label: 'Receiving' },
+  { value: 99, decimals: 0, suffix: '%', label: 'On-time deliveries' },
+  { value: 6, decimals: 0, suffix: ' ac', label: 'Fenced facility' },
 ];
 
 const capabilities = [
@@ -392,17 +392,15 @@ function Hero() {
           </div>
           <h1>
             <span className="hero-line-mask">
-              <span className="hero-line">Refrigerated freight.</span>
+              <span className="hero-line">Refrigerated &amp; frozen.</span>
             </span>
             <span className="hero-line-mask">
-              <span className="hero-line hero-line-accent">
-                Across the Northeast.
-              </span>
+              <span className="hero-line hero-line-accent">Since 1979.</span>
             </span>
           </h1>
           <p className="hero-description">
-            AtlanticCold transports refrigerated and frozen food throughout New
-            York, New Jersey, Pennsylvania, and Connecticut.
+            Specializing in refrigerated and frozen truckload and
+            less-than-truckload transportation for the greater New York area.
           </p>
           <a className="text-cta" href="#contact">
             Request a quote <ArrowDownRight size={18} />
@@ -519,9 +517,9 @@ function ServicesSection() {
         </div>
         <div className="services-heading-copy">
           <p>
-            We transport refrigerated and frozen food with the equipment,
-            communication, and regional coverage your shipments require. We also
-            provide cross-dock support for time-sensitive transfers.
+            Truckload and less-than-truckload service, door-to-door pickup and
+            delivery, same-day options, storage, labeling, EDI, shipment
+            tracking, and radio-dispatched trucks.
           </p>
           <a className="text-cta dark-cta" href="#contact">
             Talk to our team <ArrowRight size={17} />
@@ -700,9 +698,10 @@ function MetricsSection() {
             <span>delivers confidence.</span>
           </h2>
           <p className="metrics-copy">
-            When the temperature matters, there is no room for guesswork. Our
-            people, processes, and equipment are aligned around one simple
-            promise: keep your freight moving exactly as it should.
+            Since 1979, this family-owned business has combined determination,
+            an old-fashioned work ethic, and family pride with new technology.
+            We stay humble to our beginnings while moving forward to provide the
+            best possible refrigerated shipping experience.
           </p>
           <div className="metric-grid">
             {metrics.map((metric) => (
@@ -789,15 +788,14 @@ function TestimonialSection() {
           “
         </div>
         <blockquote>
-          AtlanticCold is more than a carrier — they’re a true partner in our
-          supply chain. Reliable, responsive, and committed to keeping our
-          business moving.
+          We stay humble to our beginnings while moving forward to provide our
+          customers with the best possible refrigerated shipping experience.
         </blockquote>
         <div className="quote-attribution">
           <span />
           <div>
-            <strong>Director of Logistics</strong>
-            <small>National Food Distributor</small>
+            <strong>Atlantic Cold Trucking</strong>
+            <small>Family-owned since 1979</small>
           </div>
         </div>
       </div>
@@ -861,8 +859,8 @@ function CTAFooter() {
               <span>Our priority.</span>
             </h3>
             <p className="footer-description">
-              AtlanticCold is a refrigerated and frozen food trucking company
-              serving New York, New Jersey, Pennsylvania, and Connecticut.
+              Specializing in refrigerated and frozen truckload and
+              less-than-truckload transportation for the greater New York area.
             </p>
           </div>
           <ContactForm variant="footer" />
@@ -872,10 +870,14 @@ function CTAFooter() {
               <a href="#services">Services</a>
               <a href="#equipment">Equipment</a>
               <a href="/about">About</a>
+              <a href="/forms">Forms</a>
               <a href="#contact">Contact</a>
             </div>
             <div className="footer-meta">
-              <span>© 2025 AtlanticCold Trucking</span>
+              <span>111 Maltese Drive, 1st Floor, Totowa, NJ 07512</span>
+              <span>973-837-8585 · Fax 973-837-8586</span>
+              <a href="mailto:MarkD@atlanticcold.com">MarkD@atlanticcold.com</a>
+              <span>© 2026 Atlantic Cold Trucking</span>
               <span>
                 <a href="#contact">Privacy</a> / <a href="#contact">Terms</a>
               </span>

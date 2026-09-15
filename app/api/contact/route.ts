@@ -57,11 +57,16 @@ export async function POST(request: Request) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const recipient = process.env.RESEND_TO_EMAIL || 'hello@atlanticcold.com';
-  const sender = process.env.RESEND_FROM_EMAIL || 'AtlanticCold website <onboarding@resend.dev>';
+  const recipient = process.env.RESEND_TO_EMAIL || 'MarkD@atlanticcold.com';
+  const sender =
+    process.env.RESEND_FROM_EMAIL ||
+    'AtlanticCold website <onboarding@resend.dev>';
 
   if (!apiKey) {
-    return Response.json({ error: 'Email delivery is not configured.' }, { status: 503 });
+    return Response.json(
+      { error: 'Email delivery is not configured.' },
+      { status: 503 },
+    );
   }
 
   const subject = `New ${source} inquiry from ${name}`;
@@ -73,8 +78,13 @@ export async function POST(request: Request) {
     ['Location', location || 'Not specified'],
   ];
   const html = `<h2>${escapeHtml(subject)}</h2>${detailRows
-    .map(([label, value]) => `<p><strong>${label}:</strong> ${escapeHtml(value)}</p>`)
-    .join('')}<h3>Message</h3><p>${escapeHtml(message).replace(/\n/g, '<br />')}</p>`;
+    .map(
+      ([label, value]) =>
+        `<p><strong>${label}:</strong> ${escapeHtml(value)}</p>`,
+    )
+    .join(
+      '',
+    )}<h3>Message</h3><p>${escapeHtml(message).replace(/\n/g, '<br />')}</p>`;
   const text = `${subject}\n\n${detailRows.map(([label, value]) => `${label}: ${value}`).join('\n')}\n\nMessage:\n${message}`;
 
   let response: Response;
@@ -96,11 +106,17 @@ export async function POST(request: Request) {
       }),
     });
   } catch {
-    return Response.json({ error: 'Email provider is unavailable.' }, { status: 502 });
+    return Response.json(
+      { error: 'Email provider is unavailable.' },
+      { status: 502 },
+    );
   }
 
   if (!response.ok) {
-    return Response.json({ error: 'Email provider rejected the message.' }, { status: 502 });
+    return Response.json(
+      { error: 'Email provider rejected the message.' },
+      { status: 502 },
+    );
   }
 
   return Response.json({ ok: true });
