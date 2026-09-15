@@ -79,7 +79,7 @@ export default function ServicesPage() {
               Transportation, dedicated capacity, cross-dock support, and
               cold-chain coordination for food shippers across the Northeast.
             </p>
-            <a className="footer-button" href="/#contact">
+            <a className="footer-button" href="/contact">
               Talk to our team <ArrowRight size={17} />
             </a>
           </div>
@@ -138,7 +138,7 @@ export default function ServicesPage() {
             <span>your freight.</span>
           </h2>
         </div>
-        <a className="footer-button" href="/#contact">
+        <a className="footer-button" href="/contact">
           Request a quote <ArrowRight size={17} />
         </a>
       </section>

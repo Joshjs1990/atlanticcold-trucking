@@ -288,7 +288,7 @@ export default async function ServiceAreaPage({
             <br />
             <span>across {area.name}.</span>
           </h2>
-          <a href="#top" className="footer-button">
+          <a href="/contact" className="footer-button">
             Request a quote <ArrowRight size={18} />
           </a>
         </div>

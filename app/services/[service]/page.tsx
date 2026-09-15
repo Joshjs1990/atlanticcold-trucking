@@ -307,7 +307,7 @@ export default async function ServicePage({
             <h1>{servicePage.title}</h1>
             <p>{servicePage.intro}</p>
             <div className="service-hero-actions">
-              <a className="footer-button" href="/#contact">
+              <a className="footer-button" href="/contact">
                 Request a quote <ArrowRight size={17} />
               </a>
               <a className="service-text-link" href="#service-details">
@@ -347,7 +347,7 @@ export default async function ServicePage({
             We work with your team to make the requirements clear, the timing
             realistic, and the next step easy to confirm.
           </p>
-          <a className="text-cta dark-cta" href="/#contact">
+          <a className="text-cta dark-cta" href="/contact">
             Talk to our team <ArrowRight size={17} />
           </a>
         </div>
@@ -486,7 +486,7 @@ export default async function ServicePage({
             Share the lane, timing, and load details. We’ll help you identify
             the right next step.
           </p>
-          <a className="footer-button" href="/#contact">
+          <a className="footer-button" href="/contact">
             Request a quote <ArrowRight size={17} />
           </a>
         </div>

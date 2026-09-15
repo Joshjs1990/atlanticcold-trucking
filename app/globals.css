@@ -3976,23 +3976,22 @@ blockquote {
 .about-facility-facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid rgba(7, 17, 29, 0.16);
+  gap: 12px;
 }
 
 .about-facility-facts div {
   display: grid;
   gap: 7px;
-  min-height: 116px;
-  padding: 18px 16px 16px 0;
-  border-bottom: 1px solid rgba(7, 17, 29, 0.16);
+  min-height: 150px;
+  padding: 19px;
+  border: 1px solid rgba(112, 166, 199, 0.22);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 25px rgba(7, 17, 29, 0.04);
 }
 
-.about-facility-facts div:nth-child(odd) {
-  border-right: 1px solid rgba(7, 17, 29, 0.16);
-}
-
-.about-facility-facts div:nth-child(even) {
-  padding-left: 16px;
+.about-facility-facts svg {
+  color: var(--blue);
 }
 
 .about-facility-facts strong {
@@ -4009,6 +4008,88 @@ blockquote {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.45;
+}
+
+/* Legal pages */
+.legal-page {
+  min-height: 100svh;
+  overflow: clip;
+  background: #fff;
+  color: var(--ink);
+}
+
+.legal-hero {
+  padding: 174px var(--section-x) 104px;
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(20, 134, 255, 0.25),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #f5fbfe 0%, #dceef7 100%);
+}
+
+.legal-hero > div,
+.legal-content {
+  width: min(100%, 900px);
+  margin-inline: auto;
+}
+
+.legal-hero h1 {
+  margin: 0;
+  color: var(--navy-900);
+  font-family: var(--font-heading);
+  font-size: clamp(54px, 6vw, 104px);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.052em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.legal-hero h1 span {
+  color: var(--blue);
+}
+
+.legal-hero p {
+  margin: 26px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.legal-content {
+  padding: clamp(88px, 10vw, 140px) 0;
+}
+
+.legal-content section {
+  padding: 0 0 34px;
+  border-bottom: 1px solid rgba(7, 17, 29, 0.12);
+}
+
+.legal-content section + section {
+  padding-top: 34px;
+}
+
+.legal-content h2 {
+  margin: 0;
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 0.95;
+}
+
+.legal-content p {
+  max-width: 700px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.78;
+}
+
+.legal-content p a {
+  color: var(--blue);
+}
+
+.legal-content > .text-cta {
+  margin-top: 38px;
 }
 
 .about-facility-service-note {
@@ -5434,6 +5515,12 @@ blockquote {
     color: #fff;
   }
 
+  .site-header.is-light-top:not(.is-scrolled) .mega-menu-intro p,
+  .site-header.is-light-top:not(.is-scrolled) .mega-menu-links strong,
+  .site-header.is-light-top:not(.is-scrolled) .mega-menu-links small {
+    color: #fff;
+  }
+
   .site-header.is-scrolled .main-nav {
     color: rgba(255, 255, 255, 0.78);
   }
@@ -5927,12 +6014,29 @@ blockquote {
     font-size: 11px;
   }
 
+  .about-facility-facts div {
+    min-height: 132px;
+    padding: 16px;
+  }
+
   .about-cta {
     grid-template-columns: 1fr;
   }
 
   .about-cta .footer-button {
     grid-column: auto;
+  }
+
+  .legal-hero {
+    padding: 116px 22px 72px;
+  }
+
+  .legal-hero h1 {
+    font-size: clamp(44px, 11vw, 64px);
+  }
+
+  .legal-content {
+    padding: 88px 22px;
   }
 }
 

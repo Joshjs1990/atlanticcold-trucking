@@ -68,7 +68,7 @@ export default function CoveragePage() {
               AtlanticCold transports refrigerated and frozen food throughout
               New York, New Jersey, Pennsylvania, and Connecticut.
             </p>
-            <a className="footer-button" href="/#contact">
+            <a className="footer-button" href="/contact">
               Confirm a lane <ArrowRight size={17} />
             </a>
           </div>
@@ -161,7 +161,7 @@ export default function CoveragePage() {
             <span>your lane.</span>
           </h2>
         </div>
-        <a className="footer-button" href="/#contact">
+        <a className="footer-button" href="/contact">
           Talk to our team <ArrowRight size={17} />
         </a>
       </section>

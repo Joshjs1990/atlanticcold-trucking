@@ -41,6 +41,9 @@ export function SubpageFooter() {
             Request a quote <ArrowUpRight size={14} />
           </a>
           <span>© 2026 Atlantic Cold Trucking</span>
+          <span>
+            <a href="/privacy">Privacy</a> / <a href="/terms">Terms</a>
+          </span>
           <a
             className="subpage-footer-credit"
             href="https://thecoolmoon.com/"

@@ -879,7 +879,7 @@ function CTAFooter() {
               <a href="mailto:MarkD@atlanticcold.com">MarkD@atlanticcold.com</a>
               <span>© 2026 Atlantic Cold Trucking</span>
               <span>
-                <a href="#contact">Privacy</a> / <a href="#contact">Terms</a>
+                <a href="/privacy">Privacy</a> / <a href="/terms">Terms</a>
               </span>
               <a
                 className="footer-credit"

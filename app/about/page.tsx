@@ -3,8 +3,12 @@ import Image from 'next/image';
 import {
   ArrowRight,
   Check,
+  Clock3,
+  DoorOpen,
   MapPin,
   MessageCircle,
+  Route,
+  ShieldCheck,
   Thermometer,
 } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
@@ -41,6 +45,13 @@ const commitments = [
   '99% on-time deliveries',
   'Professional drivers',
   'Industry leading low claims ratio',
+];
+
+const facilityFacts = [
+  { value: '2 mi', label: 'from the New Jersey Turnpike', icon: Route },
+  { value: '46 + 30', label: 'doors across two terminals', icon: DoorOpen },
+  { value: '24 hrs', label: 'terminal operations', icon: Clock3 },
+  { value: '6 acres', label: 'fenced and patrolled', icon: ShieldCheck },
 ];
 
 export default function AboutPage() {
@@ -135,22 +146,13 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="about-facility-facts">
-            <div>
-              <strong>2 mi</strong>
-              <span>from the New Jersey Turnpike</span>
-            </div>
-            <div>
-              <strong>46 + 30</strong>
-              <span>doors across two terminals</span>
-            </div>
-            <div>
-              <strong>24 hrs</strong>
-              <span>terminal operations</span>
-            </div>
-            <div>
-              <strong>6 acres</strong>
-              <span>fenced and patrolled</span>
-            </div>
+            {facilityFacts.map(({ value, label, icon: Icon }) => (
+              <div key={label}>
+                <Icon size={22} aria-hidden="true" />
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
           </div>
         </div>
 
