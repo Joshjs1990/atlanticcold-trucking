@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { ArrowRight, Check, Snowflake, Truck } from 'lucide-react';
 import { EquipmentViewer } from '@/components/equipment-viewer';
 import { SiteHeader } from '@/components/site-header';
@@ -16,6 +17,24 @@ const equipmentPoints = [
   'Practical access for regional delivery',
 ];
 
+const tractorTrailers = [
+  {
+    size: '48 foot',
+    title: 'Regional capacity',
+    copy: 'A flexible trailer length for refrigerated and frozen food moving through regional lanes.',
+  },
+  {
+    size: '53 foot',
+    title: 'Full trailer capacity',
+    copy: 'More room for higher-volume truckload shipments and recurring programs.',
+  },
+  {
+    size: '40 foot',
+    title: 'Liftgate access',
+    copy: 'A shorter configuration with liftgates for delivery locations without a dock.',
+  },
+] as const;
+
 export default function EquipmentPage() {
   return (
     <main className="equipment-page">
@@ -23,9 +42,7 @@ export default function EquipmentPage() {
 
       <section className="equipment-page-hero" id="top">
         <div className="equipment-page-intro">
-          <span className="section-label">
-            Purpose-built fleet
-          </span>
+          <span className="section-label">Purpose-built fleet</span>
           <h1>
             Refrigerated equipment
             <br />
@@ -38,6 +55,49 @@ export default function EquipmentPage() {
         </div>
 
         <EquipmentViewer />
+      </section>
+
+      <section className="equipment-trailers-section">
+        <div className="equipment-trailers-inner">
+          <div className="equipment-trailers-image">
+            <Image
+              src="/tractor-trailer-yard.jpeg"
+              alt="Tractor trailer ready for freight loading"
+              fill
+              unoptimized
+              sizes="(max-width: 820px) 100vw, 42vw"
+            />
+            <span>Tractor-trailer fleet</span>
+          </div>
+          <div className="equipment-trailers-content">
+            <span className="section-label section-label-light">
+              Tractor-trailer equipment
+            </span>
+            <h2>
+              More room for
+              <br />
+              <span>the route.</span>
+            </h2>
+            <p>
+              Alongside our straight trucks, Atlantic Cold offers
+              tractor-trailer configurations for different shipment sizes,
+              delivery patterns, and access requirements.
+            </p>
+            <div className="equipment-trailer-cards">
+              {tractorTrailers.map((trailer, index) => (
+                <article className="equipment-trailer-card" key={trailer.size}>
+                  <span className="equipment-trailer-number">0{index + 1}</span>
+                  <strong>{trailer.size}</strong>
+                  <h3>{trailer.title}</h3>
+                  <p>{trailer.copy}</p>
+                </article>
+              ))}
+            </div>
+            <a className="footer-button" href="/contact">
+              Talk to our team <ArrowRight size={17} />
+            </a>
+          </div>
+        </div>
       </section>
 
       <section className="equipment-page-details">

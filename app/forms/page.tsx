@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     'Download the Atlantic Cold Trucking credit application and bill of lading forms.',
 };
 
-const applicationUrl = 'http://atlanticcold.com/application.pdf';
+const applicationUrl = '/CreditApplicationForm.pdf';
 const billOfLadingUrl = 'http://atlanticcold.com/BillOfLading2.pdf';
 
 export default function FormsPage() {
