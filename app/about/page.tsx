@@ -49,7 +49,7 @@ const commitments = [
 
 const facilityFacts = [
   { value: '2 mi', label: 'from the New Jersey Turnpike', icon: Route },
-  { value: '46 + 30', label: 'doors across two terminals', icon: DoorOpen },
+  { value: '10', label: 'doors across our terminal operations', icon: DoorOpen },
   { value: '24 hrs', label: 'terminal operations', icon: Clock3 },
   { value: '6 acres', label: 'fenced and patrolled', icon: ShieldCheck },
 ];
@@ -134,8 +134,8 @@ export default function AboutPage() {
         <div className="about-facility-grid">
           <div className="about-facility-copy">
             <p>
-              We operate two terminals—a 46-door terminal and a 30-door
-              terminal—24 hours a day. The operation sits on six fenced and
+              We operate ten doors across our terminal operations, 24 hours a
+              day. The operation sits on six fenced and
               patrolled acres, giving customers a secure, practical base for
               refrigerated and frozen transportation.
             </p>
