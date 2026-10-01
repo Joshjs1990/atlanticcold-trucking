@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { notFound } from 'next/navigation';
-import { ContactForm } from '@/components/contact-form';
+import { ContactOptions } from '@/components/contact-options';
 import { InsightCard } from '@/components/insight-card';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
@@ -127,7 +127,7 @@ export default async function InsightPostPage({ params }: InsightPageProps) {
               Share the route, product, timing, and temperature requirement.
               AtlanticCold will help identify the right next step.
             </p>
-            <a className="text-cta dark-cta" href="/contact">
+            <a className="text-cta dark-cta" href="tel:+19738378585">
               Start a conversation <ArrowRight size={17} />
             </a>
           </div>
@@ -135,7 +135,7 @@ export default async function InsightPostPage({ params }: InsightPageProps) {
 
         <aside className="insight-sidebar">
           <div className="insight-sidebar-sticky">
-            <ContactForm variant="quote" />
+            <ContactOptions variant="sidebar" />
           </div>
         </aside>
 

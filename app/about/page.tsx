@@ -85,7 +85,7 @@ export default function AboutPage() {
             truckload and less-than-truckload transportation in the greater New
             York area.
           </p>
-          <a className="footer-button" href="/contact">
+          <a className="footer-button" href="tel:+19738378585">
             Talk to our team <ArrowRight size={17} />
           </a>
         </div>

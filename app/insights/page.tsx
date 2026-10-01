@@ -81,7 +81,7 @@ export default function InsightsPage() {
               dedicated routes, supply-chain coordination, and cross-dock
               services throughout the Northeast.
             </p>
-            <a className="text-cta" href="/contact">
+            <a className="text-cta" href="tel:+19738378585">
               Talk to our team <ArrowRight size={17} />
             </a>
           </div>

@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { BrandMark } from '@/components/site-header';
 
 const footerLinks = [
@@ -8,7 +8,7 @@ const footerLinks = [
   ['Insights', '/insights'],
   ['About', '/about'],
   ['Forms', '/forms'],
-  ['Contact', '/contact'],
+  ['Call', 'tel:+19738378585'],
 ] as const;
 
 export function SubpageFooter() {
@@ -37,8 +37,11 @@ export function SubpageFooter() {
         </nav>
 
         <div className="subpage-footer-meta">
-          <a className="subpage-footer-contact" href="/contact">
-            Request a quote <ArrowUpRight size={14} />
+          <a className="subpage-footer-contact" href="tel:+19738378585">
+            <Phone size={14} /> Call 973-837-8585
+          </a>
+          <a className="subpage-footer-contact" href="mailto:MarkD@atlanticcold.com">
+            <Mail size={14} /> Email MarkD@atlanticcold.com
           </a>
           <span>© 2026 Atlantic Cold Trucking</span>
           <span>

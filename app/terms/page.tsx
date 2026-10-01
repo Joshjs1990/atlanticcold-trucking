@@ -37,7 +37,7 @@ export default function TermsPage() {
         <section>
           <h2>Transportation inquiries</h2>
           <p>
-            A form submission or email is an inquiry, not a transportation
+            A call or email is an inquiry, not a transportation
             contract, rate confirmation, credit approval, or guarantee of
             service. Any engagement is subject to separate written terms,
             availability, and applicable shipping documentation.
@@ -69,7 +69,7 @@ export default function TermsPage() {
             or 973-837-8585.
           </p>
         </section>
-        <a className="text-cta dark-cta" href="/contact">
+        <a className="text-cta dark-cta" href="tel:+19738378585">
           Contact Atlantic Cold Trucking <ArrowRight size={17} />
         </a>
       </article>

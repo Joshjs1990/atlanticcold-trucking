@@ -28,18 +28,16 @@ export default function PrivacyPage() {
         <section>
           <h2>Information we collect</h2>
           <p>
-            When you contact Atlantic Cold Trucking through this website, we may
-            collect your name, email address, company, phone number, and the
-            message or shipment details you choose to provide.
+            If you contact Atlantic Cold Trucking by phone or email, we may
+            collect the contact details and shipment information you choose to
+            share.
           </p>
         </section>
         <section>
           <h2>How we use information</h2>
           <p>
-            We use submitted information to respond to inquiries, prepare
-            transportation discussions, and provide customer service. Contact
-            form submissions are sent through our email delivery provider,
-            Resend, to Atlantic Cold Trucking.
+            We use information you share to respond to inquiries, discuss
+            transportation needs, and provide customer service.
           </p>
         </section>
         <section>
@@ -68,7 +66,7 @@ export default function PrivacyPage() {
             or mailed to 111 Maltese Drive, 1st Floor, Totowa, New Jersey 07512.
           </p>
         </section>
-        <a className="text-cta dark-cta" href="/contact">
+        <a className="text-cta dark-cta" href="tel:+19738378585">
           Contact Atlantic Cold Trucking <ArrowRight size={17} />
         </a>
       </article>

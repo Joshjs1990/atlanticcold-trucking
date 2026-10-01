@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Mail, MapPin, Phone, Printer } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
-import { ContactForm } from '@/components/contact-form';
+import { ContactOptions } from '@/components/contact-options';
 
 const faqs = [
   [
@@ -80,13 +80,13 @@ export default function ContactPage() {
               <a href="tel:+19738378585">
                 <Phone size={17} /> 973-837-8585
               </a>
-              <span>
-                <Printer size={17} /> Fax: 973-837-8586
-              </span>
+          <a href="tel:+19738378586">
+            <Printer size={17} /> Fax: 973-837-8586
+          </a>
             </div>
           </div>
 
-          <ContactForm variant="quote" />
+          <ContactOptions />
         </div>
       </section>
 

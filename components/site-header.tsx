@@ -2,7 +2,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ArrowRight, Menu, Plus, X } from 'lucide-react';
+import { ArrowRight, Menu, Phone, Plus, X } from 'lucide-react';
 import Image from 'next/image';
 
 const serviceLinks = [
@@ -193,16 +193,16 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
         <a href="/forms" onClick={closeMenu}>
           Forms
         </a>
-        <a href="/contact" onClick={closeMenu}>
-          Contact
+        <a href="tel:+19738378585" onClick={closeMenu}>
+          Call 973-837-8585
         </a>
-        <a className="mobile-quote" href="/contact" onClick={closeMenu}>
-          Request a quote <ArrowRight size={15} />
+        <a className="mobile-quote" href="mailto:MarkD@atlanticcold.com" onClick={closeMenu}>
+          Email for a quote <ArrowRight size={15} />
         </a>
       </nav>
-      <a className="header-quote" href="/contact">
-        <span>Request a quote</span>
-        <ArrowRight size={15} />
+      <a className="header-quote" href="tel:+19738378585">
+        <span>Call 973-837-8585</span>
+        <Phone size={15} />
       </a>
       <button
         className="menu-toggle"

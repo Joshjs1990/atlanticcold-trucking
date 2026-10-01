@@ -4,7 +4,7 @@ import { ArrowRight, Check, MapPin } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
-import { ContactForm } from '@/components/contact-form';
+import { ContactOptions } from '@/components/contact-options';
 
 const areas = {
   'new-york': {
@@ -122,7 +122,7 @@ export default async function ServiceAreaPage({
               <MapPin size={17} /> {area.corridors}
             </div>
           </div>
-          <ContactForm variant="quote" location={area.name} />
+          <ContactOptions location={area.name} />
         </div>
       </section>
 
@@ -288,7 +288,7 @@ export default async function ServiceAreaPage({
             <br />
             <span>across {area.name}.</span>
           </h2>
-          <a href="/contact" className="footer-button">
+          <a href="tel:+19738378585" className="footer-button">
             Request a quote <ArrowRight size={18} />
           </a>
         </div>

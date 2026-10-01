@@ -93,7 +93,7 @@ export default function EquipmentPage() {
                 </article>
               ))}
             </div>
-            <a className="footer-button" href="/contact">
+            <a className="footer-button" href="tel:+19738378585">
               Talk to our team <ArrowRight size={17} />
             </a>
           </div>
@@ -137,7 +137,7 @@ export default function EquipmentPage() {
               <Truck size={17} /> Regional fleet
             </span>
           </div>
-          <a className="text-cta dark-cta" href="/contact">
+          <a className="text-cta dark-cta" href="tel:+19738378585">
             Talk to our team <ArrowRight size={17} />
           </a>
         </div>

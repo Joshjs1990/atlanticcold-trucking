@@ -12,7 +12,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BrandMark, SiteHeader } from '@/components/site-header';
-import { ContactForm } from '@/components/contact-form';
+import { ContactOptions } from '@/components/contact-options';
 import { InsightCard } from '@/components/insight-card';
 import { insightPosts } from '@/app/insights/data';
 
@@ -402,8 +402,8 @@ function Hero() {
             Specializing in refrigerated and frozen truckload and
             less-than-truckload transportation for the greater New York area.
           </p>
-          <a className="text-cta" href="#contact">
-            Request a quote <ArrowDownRight size={18} />
+          <a className="text-cta" href="tel:+19738378585">
+            Call for a quote <ArrowDownRight size={18} />
           </a>
         </div>
       </div>
@@ -521,7 +521,7 @@ function ServicesSection() {
             delivery, same-day options, storage, labeling, EDI, shipment
             tracking, and radio-dispatched trucks.
           </p>
-          <a className="text-cta dark-cta" href="#contact">
+          <a className="text-cta dark-cta" href="tel:+19738378585">
             Talk to our team <ArrowRight size={17} />
           </a>
         </div>
@@ -744,7 +744,7 @@ function EquipmentSection() {
             safely through the Northeast, with clear communication from pickup
             to delivery.
           </p>
-          <a className="text-cta dark-cta" href="#contact">
+          <a className="text-cta dark-cta" href="tel:+19738378585">
             Explore our equipment <ArrowRight size={17} />
           </a>
         </div>
@@ -863,7 +863,7 @@ function CTAFooter() {
               less-than-truckload transportation for the greater New York area.
             </p>
           </div>
-          <ContactForm variant="footer" />
+          <ContactOptions variant="footer" />
           <div className="footer-bottom">
             <BrandMark variant="light" />
             <div className="footer-links">
@@ -871,12 +871,13 @@ function CTAFooter() {
               <a href="#equipment">Equipment</a>
               <a href="/about">About</a>
               <a href="/forms">Forms</a>
-              <a href="#contact">Contact</a>
+          <a href="tel:+19738378585">Call</a>
             </div>
             <div className="footer-meta">
               <span>111 Maltese Drive, 1st Floor, Totowa, NJ 07512</span>
               <span>973-837-8585 · Fax 973-837-8586</span>
-              <a href="mailto:MarkD@atlanticcold.com">MarkD@atlanticcold.com</a>
+              <a href="tel:+19738378585">Call 973-837-8585</a>
+              <a href="mailto:MarkD@atlanticcold.com">Email MarkD@atlanticcold.com</a>
               <span>© 2026 Atlantic Cold Trucking</span>
               <span>
                 <a href="/privacy">Privacy</a> / <a href="/terms">Terms</a>
