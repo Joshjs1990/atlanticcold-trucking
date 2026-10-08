@@ -193,9 +193,6 @@ export function SiteHeader({ darkOnTop = false }: { darkOnTop?: boolean }) {
         <a href="/forms" onClick={closeMenu}>
           Forms
         </a>
-        <a href="tel:+19738378585" onClick={closeMenu}>
-          Call 973-837-8585
-        </a>
         <a className="mobile-quote" href="mailto:MarkD@atlanticcold.com" onClick={closeMenu}>
           Email for a quote <ArrowRight size={15} />
         </a>

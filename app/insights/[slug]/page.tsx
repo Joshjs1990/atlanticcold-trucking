@@ -7,6 +7,7 @@ import { InsightCard } from '@/components/insight-card';
 import { SiteHeader } from '@/components/site-header';
 import { SubpageFooter } from '@/components/subpage-footer';
 import { getInsightPost, insightPosts } from '../data';
+import { siteUrl } from '@/lib/site-url';
 
 type InsightPageProps = {
   params: Promise<{ slug: string }>;
@@ -50,7 +51,7 @@ export default async function InsightPostPage({ params }: InsightPageProps) {
     dateModified: '2026-09-01',
     author: { '@type': 'Organization', name: 'AtlanticCold Trucking' },
     publisher: { '@type': 'Organization', name: 'AtlanticCold Trucking' },
-    mainEntityOfPage: `https://atlanticcold-trucking.joshstewart90.workers.dev/insights/${post.slug}`,
+    mainEntityOfPage: new URL(`/insights/${post.slug}`, siteUrl).href,
   };
 
   return (
